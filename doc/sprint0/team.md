@@ -11,3 +11,10 @@ Student ID: 1008221979
 Email: jjerry.chen@mail.utoronto.ca
 Best Way to Connect: 647-563-7787
 Slack Username: Jerry Chen
+
+Full Name: Daniel Fu
+UTORid: FuDaniel
+Student ID: 1009364947
+Email: dan.fu@mail.utoronto.ca
+Best Way to Connect: 647 614 4308
+Slack Username: Daniel Fu
