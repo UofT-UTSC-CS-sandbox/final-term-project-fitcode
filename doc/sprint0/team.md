@@ -25,3 +25,10 @@ Student ID: 1008797081
 Email: jarvis.yu@mail.utoronto.ca
 Best Way to Connect: 7787989768
 Slack Username: Jarvis Yu
+
+Full Name: In Kim
+UTORid: kimin5
+Student ID: 1007757973
+Email: kimin.kim@mail.utoronto.ca
+Best Way to Connect: 3068070366
+Slack Username: In Kim
