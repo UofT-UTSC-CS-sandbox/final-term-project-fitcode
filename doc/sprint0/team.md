@@ -18,3 +18,10 @@ Student ID: 1009364947
 Email: dan.fu@mail.utoronto.ca
 Best Way to Connect: 647 614 4308
 Slack Username: Daniel Fu
+
+Full Name: Jarvis Yu
+UTORid: yujarvis
+Student ID: 1008797081
+Email: jarvis.yu@mail.utoronto.ca
+Best Way to Connect: 7787989768
+Slack Username: Jarvis Yu
