@@ -42,3 +42,9 @@ having too many people crowding one quest.
 
 14. As a developer, each quest must have a "minimum participant limit", so it prevents users
 from faking their quest accomplishments.
+
+15. As a registered user, I want to be able to view my challenges completed from previous games, so that I can figure out which areas of my physical fitness I have worked on the most and which areas need improvement.
+
+16. As a registered user, I want to be able to create a private game with a group of my peers, so that I can participate in games where all participants are familiar.
+
+17. As a registered user in the middle of a game, I want to be able to view the point totals of all participants in real time, so that I can strategize my next moves depending on my position on the leaderboard
