@@ -6,7 +6,8 @@ Our team is planning to build a physical fitness multiplayer game on the web.  A
 
 #### Q2: Who are your target users? (2-3 personas)
 
-Our personas are located in the file personas.pdf.
+Reference Agile - Personas.pdf 
+
 
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 
