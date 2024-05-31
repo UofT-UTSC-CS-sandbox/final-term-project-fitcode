@@ -11,4 +11,4 @@ FitQuest was made primarily to motivate more people to work out consistently. We
 To set up FitQuest on a host server, it requires: 
   -  the Django framework: https://www.djangoproject.com/download/
   -  postgresql: https://www.postgresql.org/download/
-Then simply start the application as you would normally with any other django based application
+  -  Then simply start the application as you would normally with any other django based application
