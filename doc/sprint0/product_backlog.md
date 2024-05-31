@@ -45,11 +45,12 @@ from faking their quest accomplishments.
 
 16. As a registered user, I want to be able to create a private game with a group of my peers, so that I can participate in games where all participants are familiar.
 
-17. As a registered user in the middle of a game, I want to be able to view the point totals of all participants in real time, so that I can strategize my next moves depending on my position on the leaderboard
+17. As a user, I want to be able to add new friends through a friends list
 
-18. As a user, I want the background color and the content color to be contrasting, so I have no trouble
-with reading something.
+18. As a user, I want to see how I am progressing relative to my friends, by checking some sort of leaderboard
 
-19. As a user, I want there to be a minimum text size limit which is reasonable (ex: size 18), so I don't have to look at my screen close up.
+19. As a user, I want to be able to see what quests I currently have accepted
 
 20. As a user, I want the "Sign Out" button to log out of my account, so that I can be safe from people trying to steal my account and my personal information.
+
+21. As a user, I want to be able to cancel a quest in case I change my mind in the future.
