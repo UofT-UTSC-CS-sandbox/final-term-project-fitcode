@@ -6,6 +6,9 @@ Our team is planning to build a physical fitness multiplayer game on the web.  A
 
 #### Q2: Who are your target users? (2-3 personas)
 
+Reference Agile - Personas.pdf 
+
+
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 
 As university students, we understand that academics can take a toll on one's physical and mental health.  From stress caused by trying to catch up on work and extended periods of time working on assignments, we feel that students often struggle to find the motivation and time to work out and maintain good physical health.  Throughout our experiences in university, we noticed that a good number of students perform physical activity in groups.  Whether through working out in the gym in small groups or participating in team sports, company can be a great motivator on working out.  So in hopes of helping find our users find that "spark" to start or continue working out, we decided to base our solution through company and competition.  
