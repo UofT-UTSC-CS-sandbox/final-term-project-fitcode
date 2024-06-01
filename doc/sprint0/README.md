@@ -14,8 +14,9 @@ To set up FitQuest on a host server, it requires:
 
   - the Django framework: https://www.djangoproject.com/download/
   - postgresql: https://www.postgresql.org/download/
+  - React framework: https://www.freecodecamp.org/news/how-to-install-react-a-step-by-step-guide/
 
-Then simply start the application as you would normally with any other django based application
+Then simply start the application as you would normally with any other Django and React-based application
 
 # Contributing
 
@@ -27,4 +28,4 @@ To contribute:
   3. Commit and push your changes to your branch
   4. Create a pull request
 
-If you have any issues you want to bring up, use github issues.
+To track the development of our app, we used Jira to track the tickets for our app's tasks and/or bugs.
