@@ -18,9 +18,15 @@ By creating a sense of competition within our games, we hope that this will insp
 Two more benefits that come with our app is companionship and personal goal-setting.  Starting with companionship, partaking in our games with a group of your friends can be an enjoyable experience depending on the group dynamic between said friend group.  Similar to online games such as Jackbox and sports fantasy leagues, we envision friend groups to use this application as a fun way to track their fitness journeys.  We hope that when friend groups play our game, this can help keep each member motivated to continue working out in hopes of maintaining their status on the leaderboard.  Finally, with goal setting, our application tracks a user's personal best score (points accumulated within a single game).  This can give users an extra level of competition to work towards, in addition to competing against other users.  Overall, we believe that the main benefits of our game lie in our game being relevant to people of different fitness backgrounds and helping our users create or modify their fitness goals.
 
 #### Q4: What does "DONE" means to your Team 
- * The whole team needs to agree as to what ”done” means for the features you will
-   implement.
- * Definition of done applies to all userstories
+
+In order for our project to be considered "complete", our team decided to on a set of guidelines that have to be met to ensure that we deliver a product that we envisioned when we came up with our idea. 
+
+1) Ensure all features are properly implemented: Although at features and functionalities may change throughout the course of our project, when everything is done, we are satisfied with our final version of our product, and all user stories will be completed.
+2) Quality Assurance: Make sure our code is throughly reviewed and tested. Along with the unit and integration test being passed, each group member needs to review each other's work to ensure there are no more outstanding bugs and all identified issues have been resolved.
+3) User Satisfaction: We wish to make sure that the user is satisfied when using our product, by incorporating a user centered design and including design principles to our product.
+   
+
+At the end of the day, we hope these guidelines and principles allow us to achieve our goal, to create a product that offers everyone a way to make exercising more enjoyable.
 
 ### Highlights
 
