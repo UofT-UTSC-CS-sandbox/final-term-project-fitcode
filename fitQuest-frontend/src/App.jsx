@@ -1,14 +1,8 @@
-import { useState } from 'react'
-import React from 'react';
-import FormButton from './UI/FormButton/FormButton.jsx'
-
+import { useState } from "react";
+import React from "react";
 
 function App() {
-  return (
-    <>
-      Test Page
-    </>
-  )
+  return <>Test Page</>;
 }
 
-export default App
+export default App;
