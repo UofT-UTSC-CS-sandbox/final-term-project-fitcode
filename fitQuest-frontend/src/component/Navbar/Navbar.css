@@ -1,0 +1,15 @@
+body {
+  box-sizing: content-box;
+  margin: 0;
+  background-color: #000;
+}
+
+.flex-nav {
+  flex-direction: row;
+  width: 100dvw;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 183px;
+  gap: 128px;
+}

@@ -1,9 +1,13 @@
 import { useState } from "react";
 import React from "react";
-import ComponentButton from "./UI/ComponentButton/ComponentButton";
+import Navbar from "./component/Navbar/Navbar";
 
 function App() {
-  return <>Test Page</>;
+  return (
+    <>
+      <Navbar />
+    </>
+  );
 }
 
 export default App;
