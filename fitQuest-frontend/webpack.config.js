@@ -2,10 +2,7 @@ const path = require("path");
 
 module.exports = {
   entry: "/src/index.jsx",
-  output: {
-    path: path.resolve(__dirname, "../fitQuest/core/static/js"),
-    filename: 'bundle.js'
-  },
+  output: { path: path.resolve(__dirname, "../fitQuest/core/static/js") },
   module: {
     rules: [
       {
@@ -19,12 +16,9 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: [
-          'style-loader', // injects CSS into the DOM
-          'css-loader' // interprets @import and url() like import/require() and will resolve them
-        ]
-      }
+        test: /.css$/,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
   resolve: {

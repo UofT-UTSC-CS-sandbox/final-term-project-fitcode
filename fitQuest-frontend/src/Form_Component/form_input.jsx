@@ -6,9 +6,8 @@ const FormInput = () => {
     <input
       type="text"
       className="form-input"
-      value= "hello"
     />
   );
-};
+}
 
 export default FormInput;
