@@ -6,7 +6,10 @@ import SignupForm from 'Form_Component/signup_form';
 
 function App() {
   return (
-    <SignupForm></SignupForm>
+    <div>
+          <LoginForm></LoginForm>
+          <SignupForm></SignupForm>
+    </div>
 )
 }
 
