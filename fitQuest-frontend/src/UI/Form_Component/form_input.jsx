@@ -1,5 +1,5 @@
 import React from 'react';
-import 'Form_Component/form_component.css';
+import './form_component.css';
 
 const FormInput = () => {
   return (

@@ -4,7 +4,7 @@ Example implementation of Log in Textfields and Labels using the form components
 import React from 'react';
 import FormLabel from './form_label';
 import FormInput from './form_input';
-import 'Form_Component/form_component.css';
+import './form_component.css';
 
 
 const LoginForm = () =>{

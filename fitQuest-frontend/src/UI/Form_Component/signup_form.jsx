@@ -4,7 +4,7 @@ Example implementation of sign up form without button
 import React from 'react';
 import FormLabel from './form_label';
 import FormInput from './form_input';
-import 'Form_Component/form_component.css';
+import './form_component.css';
 
 
 const SignupForm = () =>{
