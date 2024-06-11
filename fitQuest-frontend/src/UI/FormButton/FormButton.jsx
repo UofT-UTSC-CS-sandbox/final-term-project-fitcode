@@ -12,7 +12,7 @@ const FormButton = ({ formButtonType }) => {
     let text = "Log In";
     if (formButtonType === "s")    text = "Sign Up";
     return (
-        <button className="form-button">{text}</button>
+        <button className="form-button" onClick={() => {}}>{text}</button>
     );
 };
 
