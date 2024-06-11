@@ -78,13 +78,33 @@
 - Pendlay Rows
 - Deadlifts
 
-### Arms
+## Arms
+
+### Easy
 
 - Bicep Curls
 - Tricep KickBakcs
 - Hammer Curls
 - Cable Push Down
 - Cable Skull Crushers
+
+### Medium
+
+- Dumbbell Skull Crushers
+- Overhead Dumbell Tricep Extension
+- Lateral Raises 
+- Lu Raises 
+- Incline Bicep Curls
+
+### Hard
+ 
+- Barbell Curls
+- Preacher Curls
+- Weighted Tricep Dips
+- Bicep Pull Ups
+- Wide Over Head Press
+
+
 
 
 
