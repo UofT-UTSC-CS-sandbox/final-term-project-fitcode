@@ -5,3 +5,9 @@ from django.shortcuts import render
 # for testing
 def index(request):
     return render(request, "index.html")
+
+def profile(request):
+    return render(request, "index.html")
+
+def quests(request):
+    return render(request, "index.html")
