@@ -23,7 +23,6 @@ const ComponentButton = ({ buttonType, text, points, difficulty }) => {
       pointsText = points + " points";
     }
   }
-  console.log(backgroundClass);
   if (text) defaultFontText = text;
 
   return (
