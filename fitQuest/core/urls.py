@@ -9,4 +9,6 @@ urlpatterns = [
     path("profile/", views.profile, name="profile"),
     path("quests/", views.quests, name="quests"),
 
+    path("profile_data/", views.profileData, name="profile_data"),
+
 ]

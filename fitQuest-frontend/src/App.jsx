@@ -8,9 +8,9 @@ import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <>
-      <UserProfile />
-    </>
+    <Routes>
+      <Route path="/profile" element={<UserProfile/>}/>
+    </Routes>
   );
 }
 
