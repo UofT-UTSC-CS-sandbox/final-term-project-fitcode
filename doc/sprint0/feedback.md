@@ -15,10 +15,7 @@ user experience /interface ⇒ 4
 
 - good job on using figma
 
-Software setup ⇒  1
-
-- There is no explanation to show connectivity between your model, view, and controller.
-- Could explain more about the alternative techs and why they are not suitable for your team.
+Software setup ⇒  4
 
 readme.md ⇒ 3
 
@@ -27,3 +24,8 @@ readme.md ⇒ 3
 - I like how minimalistic it is
 
 Overall presentation quality ⇒ 3
+
+
+======================================
+
+total : 92.5 / 100
