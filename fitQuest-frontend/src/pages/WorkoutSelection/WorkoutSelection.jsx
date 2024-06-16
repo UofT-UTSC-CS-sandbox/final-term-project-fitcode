@@ -11,7 +11,6 @@ import "../UserProfile/UserProfile.css";
 const WorkoutSelection = () => {
   return (
     <>
-      <Navbar />
       <div className="titleSection">
         <ComponentButton />
         <p className="mainTitle">Quests</p>
@@ -23,11 +22,13 @@ const WorkoutSelection = () => {
           buttonType="questType"
           text="Push Workout"
         ></ContentComponent>
-        <ContentComponent
-          buttonType="questType"
-          type="pull"
-          text="Pull Workout"
-        ></ContentComponent>
+        <a href="/quests" style={{ textDecoration: "none", cursor: "pointer" }}>
+          <ContentComponent
+            buttonType="questType"
+            type="pull"
+            text="Pull Workout"
+          ></ContentComponent>
+        </a>
         <ContentComponent
           buttonType="questType"
           text="Arms Workout"

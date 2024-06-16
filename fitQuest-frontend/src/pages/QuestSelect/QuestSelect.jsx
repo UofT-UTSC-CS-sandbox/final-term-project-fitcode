@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../component/Navbar/Navbar";
 import ComponentButton from "../../UI/ComponentButton/ComponentButton";
-import ContentComponent from "../../UI/ContentComponent/ContentComponent";
 
 import "../UserProfile/UserProfile.css";
 import "./QuestSelect.css";
@@ -17,20 +15,24 @@ const QuestSelect = () => {
         const resp = await fetch(`/available_quests?${typePara}`);
         const allQuests = await resp.json();
         setAvailableQuests(allQuests);
+
         console.log(allQuests);
       } catch (err) {
         console.log(err);
       }
     };
+    getQuests();
   }, []);
 
   const handleClick = (value) => {
     console.log(value);
   };
 
+  const showDifficulty = (points) =>
+    points === 100 ? "easy" : points === 200 ? "medium" : "hard";
+
   return (
     <>
-      <Navbar />
       <div className="titleSection">
         <ComponentButton />
         <p className="mainTitle">Quests</p>
@@ -39,12 +41,15 @@ const QuestSelect = () => {
 
       <div className="questBody">
         {availableQuests.map((curQuest) => {
-          <ContentComponent
-            buttonType="questExcercise"
-            text="Beginner Exercise"
-            value={curQuest.quest_points}
-            onClick={() => handleClick(curQuest.quest_points)}
-          />;
+          return (
+            <ComponentButton
+              key={curQuest.quest_id}
+              buttonType="main"
+              points={curQuest.quest_points.toString()}
+              text={curQuest.name}
+              difficulty={showDifficulty(curQuest.quest_points)}
+            />
+          );
         })}
       </div>
     </>

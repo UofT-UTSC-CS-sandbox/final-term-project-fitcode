@@ -1,29 +1,28 @@
-.questBody{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    flex-wrap: wrap;
+.questBody {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
 }
 
-.contentComponent{
-    justify-content: space-between;
+.contentComponent {
+  justify-content: space-between;
 }
 
-.contentComponent:nth-child(2){
-   background-color: #FB4F05;
+.contentComponent:nth-child(2) {
+  background-color: #fb4f05;
 }
 
-.contentComponent:nth-child(3){
-    background-color: #FB0505;
- }
- 
-
-
-.componentFont{
-    text-align: start;
-    padding-left: 5%;
+.contentComponent:nth-child(3) {
+  background-color: #fb0505;
 }
 
-.componentValue{
-    padding-right: 5%;
+.componentFont {
+  text-align: start;
+  padding-left: 5%;
+}
+
+.componentValue {
+  padding-right: 5%;
 }
