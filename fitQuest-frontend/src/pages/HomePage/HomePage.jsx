@@ -7,7 +7,6 @@ import "./HomePage.css"
 const HomePage = () => {
   return (
     <>
-      <Navbar/>
       <div className="row">
             <div className="column">
                 <ContentComponent buttonType={"questList"} text={"Quest List"}/>
