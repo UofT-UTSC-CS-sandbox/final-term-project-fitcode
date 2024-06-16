@@ -15,6 +15,9 @@ def profile(request):
 def quests(request):
     return render(request, "index.html")
 
+def select(request):
+    return render(request, "index.html")
+
 def profileData(request):
     user = User.objects.filter(id=1).get()
     profile = user.userprofile

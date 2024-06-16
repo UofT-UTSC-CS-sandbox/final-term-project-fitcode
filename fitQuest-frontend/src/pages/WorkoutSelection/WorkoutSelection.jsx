@@ -7,7 +7,6 @@ import "../UserProfile/UserProfile.css"
 const WorkoutSelection = () => {
     return(
         <>
-            <Navbar></Navbar>
             <div className="titleSection">
                 <ComponentButton />
                 <p className="mainTitle">Quests</p>
