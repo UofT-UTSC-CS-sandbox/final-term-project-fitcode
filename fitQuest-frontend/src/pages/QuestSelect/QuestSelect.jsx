@@ -1,37 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../component/Navbar/Navbar";
 import ComponentButton from "../../UI/ComponentButton/ComponentButton";
 import ContentComponent from "../../UI/ContentComponent/ContentComponent";
 
-import "../UserProfile/UserProfile.css"
-import "./QuestSelect.css"
+import "../UserProfile/UserProfile.css";
+import "./QuestSelect.css";
+
+const typePara = "type=pull";
+
 const QuestSelect = () => {
+  const [availableQuests, setAvailableQuests] = useState([]);
 
-    const handleClick = (value) => {
-        console.log(value);
-      };
+  useEffect(() => {
+    const getQuests = async () => {
+      try {
+        const resp = await fetch(`/available_quests?${typePara}`);
+        const allQuests = await resp.json();
+        setAvailableQuests(allQuests);
+        console.log(allQuests);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  }, []);
 
-    return(
-        <>
-            <Navbar></Navbar>
-            <div className="titleSection">
-                <ComponentButton />
-                <p className="mainTitle">Quests</p>
-                <button className="fillerButton" />
-            </div>
+  const handleClick = (value) => {
+    console.log(value);
+  };
 
-            <div className="questBody">
-                <ContentComponent buttonType= "questExcercise" 
-                text= "Beginner Exercise" value = "100" onClick={() => handleClick(100)} ></ContentComponent>
+  return (
+    <>
+      <Navbar />
+      <div className="titleSection">
+        <ComponentButton />
+        <p className="mainTitle">Quests</p>
+        <button className="fillerButton" />
+      </div>
 
-                <ContentComponent buttonType= "questExcercise" text= "Intermediate Exercise" value = "200"
-                 onClick={() => handleClick(200)} ></ContentComponent>
-
-                <ContentComponent buttonType= "questExcercise" 
-                text= "Advanced Exercise" value = "300" onClick={() => handleClick(300)} ></ContentComponent>
-            </div>
-        </>
-    );
+      <div className="questBody">
+        {availableQuests.map((curQuest) => {
+          <ContentComponent
+            buttonType="questExcercise"
+            text="Beginner Exercise"
+            value={curQuest.quest_points}
+            onClick={() => handleClick(curQuest.quest_points)}
+          />;
+        })}
+      </div>
+    </>
+  );
 };
 
 export default QuestSelect;

@@ -10,5 +10,5 @@ urlpatterns = [
     path("quests/", views.quests, name="quests"),
 
     path("profile_data/", views.profileData, name="profile_data"),
-
+    path("available_quests/", views.availableQuests, name="available_quests")
 ]
