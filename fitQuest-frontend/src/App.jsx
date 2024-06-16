@@ -11,8 +11,11 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   return (
     <Routes>
-      <Route path="/index" element={<HomePage/>}/>
-      <Route path="/profile" element={<UserProfile/>}/>
+      <Route element={<Navbar/>}>
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="/profile" element={<UserProfile/>}/>
+      </Route>
+      
     </Routes>
   );
 }

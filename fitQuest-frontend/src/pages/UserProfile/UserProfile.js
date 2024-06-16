@@ -31,7 +31,6 @@ const UserProfile = () => {
 
   return (
     <>
-      <Navbar />
       <div className="titleSection">
         <ComponentButton />
         <p className="mainTitle">Profile</p>
