@@ -1,20 +1,23 @@
-import { useState } from "react";
-import React from "react";
+import React, { useState } from "react";
 
 import Navbar from "./component/Navbar/Navbar";
 import ContentComponent from "./UI/ContentComponent/ContentComponent";
 import FormButton from "./UI/FormButton/FormButton";
-import Login_Page from "./pages/login_pages/login_page";
+import UserProfile from "./pages/UserProfile/UserProfile";
+import HomePage from "./pages/HomePage/HomePage";
 
+import { Route, Routes } from "react-router-dom";
+import WorkoutSelection from "./pages/WorkoutSelection/WorkoutSelection";
+import QuestSelect from "./pages/QuestSelect/QuestSelect";
 function App() {
   return (
-    <>
-    <Login_Page></Login_Page>
-      {/* <Navbar/>
-      <ContentComponent/>
-      <ContentComponent buttonType={"questList"} text={"Quest List"}/>
-      <ContentComponent buttonType={"otherHome"} text={"Ongoing Quests"}/> */}
-    </>
+    <Routes>
+      <Route element={<Navbar/>}>
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="/profile" element={<UserProfile/>}/>
+      </Route>
+      
+    </Routes>
   );
 }
 

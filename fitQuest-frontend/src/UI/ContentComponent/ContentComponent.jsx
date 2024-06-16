@@ -4,7 +4,13 @@ import "./ContentComponent.css";
    There are three possible values for buttonType: questList (button on home screen), 
    otherHome (the rectangle non-QuestList buttons on home screen), and questType (default)
  */
-const ContentComponent = ({buttonType, text }) => {
+
+/*
+ Additional Added Ons:
+ Created new type called questExercise for the excercise page.
+ Also created new prop value which is the score per exercise
+*/
+const ContentComponent = ({buttonType, text, value,  onClick = () => {}}) => {
     let defaultText = "Placeholder Workout";
     let componentClass = "contentComponent questType";
   
@@ -16,13 +22,22 @@ const ContentComponent = ({buttonType, text }) => {
       if (buttonType === "otherHome") {
         componentClass = "contentComponent otherHome"
       }
+
+      if (buttonType === "questExcercise") {
+        componentClass = "contentComponent questExcercise"
+      }
+    }
+
+    if(value){
+
     }
 
     if (text) defaultText = text;
   
     return (
-      <button className={componentClass} onClick={() => {}}>
+      <button className={componentClass} onClick={onClick}>
         <p className="componentFont">{defaultText}</p>
+        {value && <p className="componentValue">{value}</p>}
       </button>
     );
   };
