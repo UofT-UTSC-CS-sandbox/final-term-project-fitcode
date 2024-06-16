@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
-import Navbar from "../component/Navbar/Navbar"
-import ContentComponent from "../UI/ContentComponent/ContentComponent";
+import Navbar from "../../component/Navbar/Navbar"
+import ContentComponent from "../../UI/ContentComponent/ContentComponent";
 import "./HomePage.css"
 
-function HomePage() {
+const HomePage = () => {
   return (
     <>
       <Navbar/>
