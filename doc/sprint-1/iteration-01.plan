@@ -1,0 +1,69 @@
+# FitQuest
+
+## Iteration 1
+
+ * Start date: 02/06/2024
+ * End date: 16/06/2024
+
+## Process
+
+#### Events
+
+Describe meetings (and other events) you are planning to have:
+
+ * When and where? In-person or online?
+
+Most of our meetings will be online on Thursdays and Sundays, conducted on Slack/Discord. We will also meet in-person on Tuesdays either after tutorial or after lecture, and will have a chance to conduct our scrum meetings then as well. More meetings can be scheduled if necessary.
+
+ * What's the purpose of each meeting?
+
+The purpose of each meeting is usually a checkup on what we have done so far, and for us to discuss what we plan on doing after. A meeting can also be arranged if a person needs assistance, allowing others to take a look and offer a different perspective on how to solve any issues they are facing.
+
+#### Artifacts
+
+List/describe the artifacts you will produce in order to organize your team.       
+
+The main artifact that our team uses to organize our productivity is our JIRA board.
+
+   * How do you keep track of what needs to get done?
+	
+Prior to the start of each sprint, the JIRA board is filled with a subset of tasks from the product_backlog.md we created in Sprint 0.  Throughout the sprint, each standup meeting allows our team to discuss where we currently are in the project, and what needs to be done next.
+
+   * How do you prioritize tasks?
+
+The prioritization of our tasks can mainly be found in our JIRA board, more specifically in the details of each user story. Each user story is assigned a priority level which depicts how important a user story is, and the user stories that are deemed more important will be prioritized.  Additionally, in the event that a high-priority user story/task is added in the middle of a sprint, the whole group is notified through text so that the task can be worked on whenever someone finishes their task.  Finally, tasks that produce blockers when incomplete are prioritized over tickets with no dependencies.
+
+   * How do tasks get assigned to team members?
+
+Tasks are assigned during standups, as members will choose which task they want to work on.  As long as these tasks are either deliverable-related or are located on the corresponding sprint’s JIRA board, any member is free to choose any task.
+
+## Product
+
+#### Goals and tasks
+
+ * Describe your goals for this iteration and the tasks that you will have to complete in order to achieve these goals.
+Create a working system where users can select quests from a list of quests of varying difficulties
+Set up front-end and back-end technologies
+Create pages (Home Page, List of Quests)
+Insert list of quests into the database 
+Allow users to select a quest
+Allow users to complete a quest, assigning points
+Create a User Profile
+Create a user profile page
+Ensure username, points, and rank match the values in the database
+See how many points to the next rank 
+Create a login/sign up page
+Allows users to create an account and log in to their account
+
+
+#### Artifacts
+
+List/describe the artifacts you will produce in order to present your project idea.
+
+Build a static website, uploaded to our Github repository so it is publicly accessible
+Could potentially also deploy it as a website, so users will not have to install all the technologies required to run it
+
+The Figma design that we submitted in sprint-0 serves as an semi-interactive prototype of our project
+Using the Figma as a prototype has its limitations as it’s mainly used to display the UI of our app and is limited with showing specific scenarios/paths
+
+A potential artifact that was brought up in one of our standups was a short tutorial video, describing new users how to use FitQuest
