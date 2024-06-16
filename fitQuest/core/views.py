@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.contrib.auth.models import User
-from matplotlib.style import available
-from fitQuest.core.models import Quests
+from core.models import Quests
 
 # Create your views here.
 
