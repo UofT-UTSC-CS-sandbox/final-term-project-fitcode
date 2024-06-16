@@ -1,12 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./UserProfile.css";
 import Navbar from "../../component/Navbar/Navbar";
 import ComponentButton from "../../UI/ComponentButton/ComponentButton";
 
-const exampleInfo = { Username: "User123", Points: 5 };
 
 const UserProfile = () => {
+
+  const [username, setUsername] = useState("default")
+  const [points, setPoints] = useState(0)
+
+  useEffect( () => {
+
+    const getProfileData = async () => {
+      try {
+        const response = await fetch("/profile_data")
+        const profile_data = await response.json()
+        setUsername(profile_data.username)
+        setPoints(profile_data.points)
+        console.log(profile_data);
+      }
+      catch (err) {
+        console.log(err)
+      }
+    }
+    getProfileData()
+  })
+
+  const exampleInfo = { Username: username, Points: points };
+
   return (
     <>
       <Navbar />

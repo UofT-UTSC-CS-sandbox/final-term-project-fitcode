@@ -9,9 +9,9 @@ import WorkoutSelection from "./pages/WorkoutSelection/WorkoutSelection";
 import QuestSelect from "./pages/QuestSelect/QuestSelect";
 function App() {
   return (
-    <>
-      <QuestSelect/>
-    </>
+    <Routes>
+      <Route path="/profile" element={<UserProfile/>}/>
+    </Routes>
   );
 }
 
