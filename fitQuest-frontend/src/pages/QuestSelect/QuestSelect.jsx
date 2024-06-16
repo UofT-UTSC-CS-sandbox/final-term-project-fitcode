@@ -13,7 +13,6 @@ const QuestSelect = () => {
 
     return(
         <>
-            <Navbar></Navbar>
             <div className="titleSection">
                 <ComponentButton />
                 <p className="mainTitle">Quests</p>

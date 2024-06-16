@@ -15,8 +15,9 @@ function App() {
       <Route element={<Navbar/>}>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/profile" element={<UserProfile/>}/>
+        <Route path="/quests" element={<QuestSelect/>}/>
+        <Route path="/select" element={<WorkoutSelection/>}/>
       </Route>
-      
     </Routes>
   );
 }

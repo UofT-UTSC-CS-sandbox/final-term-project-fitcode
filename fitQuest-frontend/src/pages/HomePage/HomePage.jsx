@@ -9,7 +9,9 @@ const HomePage = () => {
     <>
       <div className="row">
             <div className="column">
+              <a href="/select" style={{textDecoration: "none", cursor: "pointer"}}>
                 <ContentComponent buttonType={"questList"} text={"Quest List"}/>
+                </a>
             </div>
             <div className="column">
                 <ContentComponent buttonType={"otherHome"} text={"Ongoing Quests"}/>
