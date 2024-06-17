@@ -1,0 +1,50 @@
+.contentComponent{
+    padding: 10px;
+    background-color: #FBBC05;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    justify-content: space-around;
+    margin: 35px;
+}
+
+.questType{
+    width: 278px;
+    height: 256px;
+}
+
+.otherHome{
+    width: 414px;
+    height: 126px;
+}
+
+.questList{
+    width: 545px;
+    height: 456px;
+}
+
+.questExcercise{
+    width: 1146px;
+    height: 80px;
+    margin: 25px !important;
+}
+
+.componentFont{
+    font-weight: 250px;
+    font-size: 40px;
+    font-family: Keania One;
+    color: #fff;
+}
+
+.contentComponent:hover{
+    background-color: #ffdb6e;
+}
+
+.componentValue{
+    font-weight: 250px;
+    font-size: 40px;
+    font-family: Keania One;
+    color: #fff;
+}
