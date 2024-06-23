@@ -5,16 +5,22 @@ import React from 'react';
 import FormLabel from './form_label';
 import FormInput from './form_input';
 import './form_component.css';
+import FormButton from '../FormButton/FormButton';
 
 
 const LoginForm = () =>{
     return(
-        <div className = "login-form" >
-            <FormLabel title = "Username or Email"></FormLabel>
-            <FormInput></FormInput>
-            <FormLabel title = "Password"></FormLabel>
-            <FormInput></FormInput>
-        </div>
+        <form method="post" action="/accounts/login/" >
+            <div className="login-form">
+                <input type="hidden" name="csrfmiddlewaretoken" value={csrftoken} />
+                <FormLabel title = "Username or Email"></FormLabel>
+                <input name="username" type="text" className="form-input"/>
+                <FormLabel title = "Password"></FormLabel>
+                <input name="password" type="text" className="form-input"/>
+                <FormButton></FormButton>
+                <input type="hidden" name="next" value="/"/>
+            </div>
+        </form>
 
     );
 }

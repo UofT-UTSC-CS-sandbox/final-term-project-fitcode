@@ -9,6 +9,9 @@ import HomePage from "./pages/HomePage/HomePage";
 import { Route, Routes } from "react-router-dom";
 import WorkoutSelection from "./pages/WorkoutSelection/WorkoutSelection";
 import QuestSelect from "./pages/QuestSelect/QuestSelect";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+
 function App() {
   return (
     <Routes>
@@ -18,6 +21,8 @@ function App() {
         <Route path="/quests" element={<QuestSelect/>}/>
         <Route path="/select" element={<WorkoutSelection/>}/>
       </Route>
+      <Route path="/accounts/login/" element={<LoginPage/>}/>
+      <Route path="/accounts/register/" element={<RegisterPage/>}/>
     </Routes>
   );
 }
