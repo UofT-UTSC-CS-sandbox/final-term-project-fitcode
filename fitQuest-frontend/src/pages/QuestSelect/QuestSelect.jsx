@@ -4,7 +4,7 @@ import ComponentButton from "../../UI/ComponentButton/ComponentButton";
 import "../UserProfile/UserProfile.css";
 import "./QuestSelect.css";
 
-const typePara = "type=pull";
+const typePara = "type=Pull";
 
 const QuestSelect = () => {
   const [availableQuests, setAvailableQuests] = useState([]);

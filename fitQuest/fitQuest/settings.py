@@ -79,12 +79,13 @@ WSGI_APPLICATION = 'fitQuest.wsgi.application'
 DATABASES = {
 'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fitquest',
+        'NAME': 'fitquesttest',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'fitquest.c5aeao8uagui.us-east-2.rds.amazonaws.com',
+        'PASSWORD': '*fitquest58',
+        'HOST': 'fitquesttest.c5aeao8uagui.us-east-2.rds.amazonaws.com',
         'PORT': '5432',
-    }
+    } 
+
 }
 
 
