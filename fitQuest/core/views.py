@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse 
-from core.models import Quests
+from core.models import Quests, User_Quest
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth import login, logout
 
@@ -25,6 +25,7 @@ def quests(request):
 @login_required
 def select(request):
     return render(request, "index.html")
+
 
 def register(request):
     # check if user is already logged in
@@ -54,3 +55,15 @@ def availableQuests(request):
     quest_type = request.GET.get('type')
     availableQuests = Quests.objects.filter(available=True, target_area=quest_type).values('quest_id', 'target_area', 'name', 'description', 'quest_points')
     return JsonResponse(list(availableQuests), safe=False)
+
+@login_required
+def allUserQuests(request, user_id):
+   user_quests = User_Quest.objects.filter(user_id=user_id).values('quest_id', 'status')
+   return JsonResponse(list(user_quests), safe=False)
+
+@login_required
+def cancelUserQuest(request, user_id, quest_id):
+    user_quest = get_object_or_404(User_Quest, user_id=user_id, quest_id=quest_id)
+    user_quest.delete()
+    return User_Quest.objects
+
