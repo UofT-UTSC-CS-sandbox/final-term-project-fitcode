@@ -1,0 +1,10 @@
+.row{
+    display: flex;
+    justify-content: center;
+}
+
+.column {
+    float:left;
+    padding: 10px;
+    height: 500px;
+}

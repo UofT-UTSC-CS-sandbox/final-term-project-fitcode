@@ -25,6 +25,12 @@
     height: 456px;
 }
 
+.questExcercise{
+    width: 1146px;
+    height: 80px;
+    margin: 25px !important;
+}
+
 .componentFont{
     font-weight: 250px;
     font-size: 40px;
@@ -34,4 +40,11 @@
 
 .contentComponent:hover{
     background-color: #ffdb6e;
+}
+
+.componentValue{
+    font-weight: 250px;
+    font-size: 40px;
+    font-family: Keania One;
+    color: #fff;
 }
