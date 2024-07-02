@@ -9,8 +9,11 @@ import HomePage from "./pages/HomePage/HomePage";
 import { Route, Routes } from "react-router-dom";
 import WorkoutSelection from "./pages/WorkoutSelection/WorkoutSelection";
 import QuestSelect from "./pages/QuestSelect/QuestSelect";
+
+import { PopupProvider } from "./UI/PopUp/PopUpContext";
 function App() {
   return (
+    <PopupProvider>
     <Routes>
       <Route element={<Navbar/>}>
         <Route path="/" element={<HomePage/>}/>
@@ -19,6 +22,7 @@ function App() {
         <Route path="/select" element={<WorkoutSelection/>}/>
       </Route>
     </Routes>
+    </PopupProvider>
   );
 }
 

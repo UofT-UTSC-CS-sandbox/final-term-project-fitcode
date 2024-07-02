@@ -5,10 +5,10 @@ import ComponentButton from "../../UI/ComponentButton/ComponentButton";
 import ContentComponent from "../../UI/ContentComponent/ContentComponent";
 import "./WorkoutSelection.css";
 import "../UserProfile/UserProfile.css";
-
+import { usePopup } from "../../UI/PopUp/PopUpContext";
 const WorkoutSelection = () => {
   const navigate = useNavigate();
-
+  const { showPopup } = usePopup();
   const getQuests = async (type) => {
     try {
       console.log(type);
@@ -26,6 +26,7 @@ const WorkoutSelection = () => {
 
   const handleSelectionClick = (workoutType) => {
     getQuests(workoutType);
+    showPopup("TEST", 3000);
   };
 
   console.log("test");
