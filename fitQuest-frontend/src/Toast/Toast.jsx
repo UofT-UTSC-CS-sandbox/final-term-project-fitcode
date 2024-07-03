@@ -1,5 +1,5 @@
 // Toast.jsx
-import {useEffect} from 'react';
+import React, {useEffect} from 'react';
 import './Toast.css';
 
 const Toast = ({ message, duration, onDismiss }) => {
