@@ -1,10 +1,10 @@
 // Toast.jsx
-import React from 'react';
+import {useEffect} from 'react';
 import './Toast.css';
 
 const Toast = ({ message, duration, onDismiss }) => {
-  React.useEffect(() => {
-    const timer = setTimeout(onDismiss, duration);
+  useEffect(() => {
+    const timer = setTimeout(onDismiss, duration); //After the toast is created, we set the timer with duration, onDismiss will remove it from Toast Array in Toast Manager
     return () => clearTimeout(timer);
   }, [duration, onDismiss]);
 
