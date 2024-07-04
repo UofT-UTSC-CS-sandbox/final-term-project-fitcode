@@ -57,9 +57,13 @@ def availableQuests(request):
     return JsonResponse(list(availableQuests), safe=False)
 
 @login_required
-def allUserQuests(request, user_id):
-   user_quests = User_Quest.objects.filter(user_id=user_id).values('quest_id', 'status')
+def allUserQuests(request):
+   user_quests = User_Quest.objects.filter(user_id=request.user.id).values('quest_id', 'status')
    return JsonResponse(list(user_quests), safe=False)
+
+@login_required
+def displayUserQuests(request):
+   return render(request, 'index.html')
 
 @login_required
 def cancelUserQuest(request, user_id, quest_id):

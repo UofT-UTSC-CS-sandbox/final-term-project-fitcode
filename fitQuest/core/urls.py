@@ -12,6 +12,8 @@ urlpatterns = [
     path("profile_data/", views.profileData, name="profile_data"),
     path("available_quests/", views.availableQuests, name="available_quests"),
     path("accounts/register/", views.register, name="register"),
-    path('user/<int:user_id>/ongoing/', views.allUserQuests, name='ongoing_quests'),
+    path('ongoing_quests/', views.displayUserQuests, name='ongoing_quests'),
+    path('ongoing_quest_list/', views.allUserQuests, name='ongoing_quest_list'),
+
 
 ]

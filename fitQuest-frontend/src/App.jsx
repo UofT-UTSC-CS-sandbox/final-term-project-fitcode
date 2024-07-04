@@ -22,7 +22,7 @@ function App() {
         <Route path="/profile" element={<UserProfile/>}/>
         <Route path="/quests" element={<QuestSelect/>}/>
         <Route path="/select" element={<WorkoutSelection/>}/>
-        <Route path="/user/1/ongoing" element={<OngoingQuests/>}/>
+        <Route path="/ongoing_quests" element={<OngoingQuests/>}/>
       </Route>
       <Route path="/accounts/login/" element={<LoginPage/>}/>
       <Route path="/accounts/register/" element={<RegisterPage/>}/>

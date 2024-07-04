@@ -4,31 +4,27 @@ import ComponentButton from "../../UI/ComponentButton/ComponentButton";
 import "../UserProfile/UserProfile.css";
 import "./OngoingQuestPage.css";
 
-const typePara = "type=Pull";
 
 const OngoingQuests = () => {
-  const [availableUserQuests, setAvailableUserQuests] = useState([]);
+  const [allOngoingQuests, setOngoingQuests] = useState([]);
 
+ 
   useEffect(() => {
-    const getQuests = async () => {
-      try {
-        const resp = await fetch(`/ongoing_quests?${typePara}`);
-        const allUserQuests = await resp.json();
-        setAvailableUserQuests(allUserQuests);
-        console.log(allUserQuests);
-      } catch (err) {
-        console.log(err);
+  const getOngoingQuests = async () => {
+    try{
+      const resp = await fetch(`/ongoing_quest_list`);
+      if (!resp.ok) {
+        throw new Error('Network response was not ok');
       }
-    };
-    getQuests();
-  }, []);
-
-//   const handleClick = (value) => {
-//     console.log(value);
-//   };
-
-  const showDifficulty = (points) =>
-    points === 100 ? "easy" : points === 200 ? "medium" : "hard";
+      const allOngoingQuests = await resp.json();
+      setOngoingQuests(allOngoingQuests);
+      console.log(allOngoingQuests);
+    }catch (e){
+      console.log(e);
+    }
+  };
+  getOngoingQuests();
+  },[]);
 
   return (
     <>
@@ -39,17 +35,17 @@ const OngoingQuests = () => {
       </div>
 
       <div className="questBody">
-        {availableUserQuests.map((curQuest) => {
+        {allOngoingQuests.map((curQuest) => {
           return (
             <ComponentButton
               key={curQuest.quest_id}
               buttonType="main"
-              text={'hi'}
-              difficulty={'easy'}
-              points={100}
-            />
-          );
+              points={0}
+              text={"Temp Quest"}
+              difficulty={"easy"}
+            />)
         })}
+        
       </div>
     </>
   );
