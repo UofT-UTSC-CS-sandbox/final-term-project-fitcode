@@ -1,9 +1,12 @@
+
 from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse 
 from core.models import Quests, User_Quest
+from core.models import Quests
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth import login, logout
 
@@ -25,7 +28,6 @@ def quests(request):
 @login_required
 def select(request):
     return render(request, "index.html")
-
 
 def register(request):
     # check if user is already logged in

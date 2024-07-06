@@ -14,6 +14,6 @@ urlpatterns = [
     path("accounts/register/", views.register, name="register"),
     path('ongoing_quests/', views.displayUserQuests, name='ongoing_quests'),
     path('ongoing_quest_list/', views.allUserQuests, name='ongoing_quest_list'),
-
+    path("accounts/register/", views.register, name="register")
 
 ]
