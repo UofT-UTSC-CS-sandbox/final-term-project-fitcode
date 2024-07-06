@@ -26,6 +26,7 @@
   height: 80px;
   justify-content: space-around;
   margin: 20px 0;
+  padding-bottom:21px
 }
 
 .easy {
@@ -38,4 +39,29 @@
 
 .hard {
   background-color: #fb0505;
+}
+
+.accordion {
+  width: 1146px;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 0; /* Make top left corner sharp */
+  border-top-right-radius: 0; /* Make top right corner sharp */
+  border-bottom-left-radius: 30px; /* Make bottom left corner rounded */
+  border-bottom-right-radius: 30px; /* Make bottom right corner rounded */
+  margin-top: -46px;
+  justify-content: space-around;
+  padding: 35px 0;
+}
+
+.quest-description-text {
+  font-size: 25px;
+  font-family: Keania One;
+  color: #fff;
+  margin-left: 10px;
+  width: 50%;
+}
+
+.acceptBackground {
+  background-color: blueviolet;
 }
