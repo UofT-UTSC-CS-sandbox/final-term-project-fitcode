@@ -15,7 +15,7 @@ const HomePage = () => {
             </div>
             <div className="column">
                 <ContentComponent buttonType={"otherHome"} text={"Ongoing Quests"}/>
-                <ContentComponent buttonType={"otherHome"} text={"PvP"}/>
+                <ContentComponent buttonType={"otherHome"} text={"Completed Quests"} onClick={()=>{window.location.href="/completed_quests"}}/>
                 <ContentComponent buttonType={"otherHome"} text={"Leaderboards"}/>
             </div>
         </div>
