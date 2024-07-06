@@ -10,36 +10,32 @@ import "./ContentComponent.css";
  Created new type called questExercise for the excercise page.
  Also created new prop value which is the score per exercise
 */
-const ContentComponent = ({buttonType, text, value,  onClick = () => {}}) => {
-    let defaultText = "Placeholder Workout";
-    let componentClass = "contentComponent questType";
-  
-    if (buttonType) {
-      if (buttonType === "questList"){
-        componentClass = "contentComponent questList";
-      } 
+const ContentComponent = ({ buttonType, text, value, onClick = () => {} }) => {
+  let defaultText = "Placeholder Workout";
+  let componentClass = "contentComponent questType";
 
-      if (buttonType === "otherHome") {
-        componentClass = "contentComponent otherHome"
-      }
-
-      if (buttonType === "questExcercise") {
-        componentClass = "contentComponent questExcercise"
-      }
+  if (buttonType) {
+    if (buttonType === "questList") {
+      componentClass = "contentComponent questList";
     }
 
-    if(value){
-
+    if (buttonType === "otherHome") {
+      componentClass = "contentComponent otherHome";
     }
 
-    if (text) defaultText = text;
-  
-    return (
-      <button className={componentClass} onClick={onClick}>
-        <p className="componentFont">{defaultText}</p>
-        {value && <p className="componentValue">{value}</p>}
-      </button>
-    );
-  };
-  
-  export default ContentComponent;
+    if (buttonType === "questExcercise") {
+      componentClass = "contentComponent questExcercise";
+    }
+  }
+
+  if (text) defaultText = text;
+
+  return (
+    <button className={componentClass} onClick={onClick}>
+      <p className="componentFont">{defaultText}</p>
+      {value && <p className="componentValue">{value}</p>}
+    </button>
+  );
+};
+
+export default ContentComponent;
