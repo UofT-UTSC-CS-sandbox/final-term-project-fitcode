@@ -63,5 +63,9 @@
 }
 
 .acceptBackground {
-  background-color: blueviolet;
+  border-radius: 30px;
+  border-color: black;
+  border-style: solid;
+  width: 270px;
+  background-color: #fb4f05;
 }
