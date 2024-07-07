@@ -58,16 +58,26 @@ def availableQuests(request):
 
 @login_required
 def allUserQuests(request):
-   user_quests = User_Quest.objects.filter(user_id=request.user.id).values('quest_id', 'status')
-   return JsonResponse(list(user_quests), safe=False)
+   
+   #user_quests = User_Quest.objects.filter(user_id=request.user.id, status=0).values('quest_id', 'status') 
+   user_quests = User_Quest.objects.filter(user_id=request.user.id).prefetch_related('quest_id')
+   quests_data = []
+   for user_quest in user_quests:
+        quests_data.append({
+            'quest_id': user_quest.quest_id.quest_id,
+            'name': user_quest.quest_id.name,
+            'points': user_quest.quest_id.quest_points
+        })
+   return JsonResponse((quests_data), safe=False)
 
 @login_required
 def displayUserQuests(request):
    return render(request, 'index.html')
 
 @login_required
-def cancelUserQuest(request, user_id, quest_id):
-    user_quest = get_object_or_404(User_Quest, user_id=user_id, quest_id=quest_id)
-    user_quest.delete()
-    return User_Quest.objects
+def cancelUserQuest(request):
+    q_id = request.GET.get('quest_id')
+    user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=q_id)
+    user_quests = User_Quest.delete(user_quest)
+    return JsonResponse(list(user_quests), safe=False)
 
