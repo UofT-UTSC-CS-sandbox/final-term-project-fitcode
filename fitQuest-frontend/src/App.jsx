@@ -11,6 +11,7 @@ import WorkoutSelection from "./pages/WorkoutSelection/WorkoutSelection";
 import QuestSelect from "./pages/QuestSelect/QuestSelect";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import CompletedQuests from "./pages/CompletedQuests/CompletedQuests";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/profile" element={<UserProfile/>}/>
         <Route path="/quests" element={<QuestSelect/>}/>
         <Route path="/select" element={<WorkoutSelection/>}/>
+        <Route path="/completed_quests/" element={<CompletedQuests/>}/>
       </Route>
       <Route path="/accounts/login/" element={<LoginPage/>}/>
       <Route path="/accounts/register/" element={<RegisterPage/>}/>
