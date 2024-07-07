@@ -7,9 +7,12 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse 
 from core.models import Quests, User_Quest
 from core.models import Quests
+from core.models import Quests, User_Quest, UserProfile
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth import login, logout
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.core import serializers
 
 # Create your views here.
 
@@ -31,6 +34,7 @@ def select(request):
     return render(request, "index.html")
 
 @ensure_csrf_cookie
+@ensure_csrf_cookie
 def register(request):
     # check if user is already logged in
     if request.user.is_authenticated:
@@ -38,9 +42,10 @@ def register(request):
     
     if request.method == "POST": 
         form = UserCreationForm(request.POST) 
-        print(form.errors)
         if form.is_valid(): 
+            user = form.save()
             login(request, form.save())
+            profile = UserProfile.objects.create(user=user, points=0)
             return HttpResponseRedirect(reverse("core:home"))
     else:
         form = UserCreationForm()
@@ -48,7 +53,7 @@ def register(request):
 
 @login_required
 def profileData(request):
-    user = User.objects.filter(id=1).get()
+    user = User.objects.filter(id=request.user.id).get()
     profile = user.userprofile
     return JsonResponse({
         "username": user.username,
@@ -91,3 +96,16 @@ def completeUserQuest(request, quest_id):
     user_quest.status = 1 #set status = 1 to signify completion
     user_quest.save()
     return JsonResponse({'status': 'success', 'quest_id': quest_id})
+def cancelUserQuest(request):
+    q_id = request.GET.get('quest_id')
+    user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=q_id)
+    user_quests = User_Quest.delete(user_quest)
+    return JsonResponse(list(user_quests), safe=False)
+
+def getCompletedQuests(request):
+    user_quests = User_Quest.objects.filter(user_id=request.user, status=1).values_list("quest_id")
+    data = Quests.objects.filter(quest_id__in = user_quests).values()
+    return JsonResponse({
+        "quests": list(data)
+    })
+
