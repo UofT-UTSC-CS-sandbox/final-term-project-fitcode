@@ -7,18 +7,12 @@ import "./OngoingQuestPage.css";
 
 const OngoingQuests = () => {
   const [allOngoingQuests, setOngoingQuests] = useState([]);
-
- 
   useEffect(() => {
   const getOngoingQuests = async () => {
     try{
       const resp = await fetch(`/ongoing_quest_list`);
-      if (!resp.ok) {
-        throw new Error('Network response was not ok');
-      }
       const allOngoingQuests = await resp.json();
       setOngoingQuests(allOngoingQuests);
-      console.log(allOngoingQuests);
     }catch (e){
       console.log(e);
     }
@@ -48,6 +42,17 @@ const OngoingQuests = () => {
     onClick(curQuest);
   };
 
+  // const deleteUserQuest = async (quest_id) => {
+  //   try{
+  //     const resp = await fetch(`/cancel_ongoing_quest/?${quest_id}`);
+  //     const newOngoingQuests = await resp.json();
+  //     setOngoingQuests(newOngoingQuests);
+  //     await fetch(`/ongoing_quests`);
+  //   }catch(e){
+  //     console.log(e);
+  //   }
+  // }
+
   return (
     <>
       <div className="titleSection">
@@ -62,8 +67,8 @@ const OngoingQuests = () => {
             <ComponentButton
               key={curQuest.quest_id}
               buttonType="main"
-              points={0}
-              text={"Temp Quest"}
+              points={curQuest.points.toString()}
+              text={curQuest.name}
               difficulty={"easy"}
               onClick={handleClick(curQuest)}
             />)
