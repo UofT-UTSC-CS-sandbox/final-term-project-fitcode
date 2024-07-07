@@ -11,9 +11,7 @@ const WorkoutSelection = () => {
 
   const getQuests = async (type) => {
     try {
-      console.log(type);
       const resp = await fetch(`/available_quests?type=${type}`);
-      console.log(resp);
       const allQuests = await resp.json();
 
       navigate("/quests", {
@@ -28,12 +26,10 @@ const WorkoutSelection = () => {
     getQuests(workoutType);
   };
 
-  console.log("test");
-
   return (
     <>
       <div className="titleSection">
-        <ComponentButton />
+        <ComponentButton onClick={() => navigate(-1)} />
         <p className="mainTitle">Quests</p>
         <button className="fillerButton" />
       </div>
