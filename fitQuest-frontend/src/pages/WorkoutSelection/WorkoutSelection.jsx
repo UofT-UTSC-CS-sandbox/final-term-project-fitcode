@@ -75,3 +75,4 @@ const WorkoutSelection = () => {
 };
 
 export default WorkoutSelection;
+
