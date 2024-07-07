@@ -2,9 +2,17 @@ import { useEffect, useState } from "react";
 import React from "react";
 import Navbar from "../../component/Navbar/Navbar";
 import ContentComponent from "../../UI/ContentComponent/ContentComponent";
-import "./HomePage.css";
+import "./HomePage.css"
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+
+  const navigate = useNavigate();
+
+    const handleOngoingQuestsClick = () =>{
+    getOngoingQuests();
+  };
+
   return (
     <>
       <div className="row">
