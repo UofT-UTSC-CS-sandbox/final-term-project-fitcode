@@ -12,6 +12,8 @@ const ComponentButton = ({
   difficulty,
   onClick = () => {},
   curQuestId,
+  onClickComplete,
+  onClickCancel
 }) => {
   let defaultFontText = "Back";
   let pointsText = "";
@@ -38,7 +40,7 @@ const ComponentButton = ({
 
   if (buttonType) {
     if (buttonType === "navbar") backgroundClass += " navbarBackground";
-    if (buttonType === "main") {
+    if (buttonType === "main" || buttonType === "main ongoing") {
       backgroundClass += " mainBackground";
       backgroundClass +=
         difficulty === "easy"
@@ -54,26 +56,41 @@ const ComponentButton = ({
 
   // Define toggleAccordion to conditionally toggle based on buttonType
   const toggleAccordion = () => {
+    if (buttonType === "main ongoing") {
+      setIsAccordionVisible(!isAccordionVisible);
+    } else
     if (buttonType === "main") {
       setIsAccordionVisible((curState) => !curState);
     }
   };
 
-  let accordionClassName = "accordion " + difficulty;
+  // let accordionClassName = "accordion " + difficulty;
 
   // Simple Accordion Component for demonstration
-  const Accordion = () => (
-    <div className={accordionClassName} onClick={toggleAccordion}>
-      <div className="quest-description-text">
-        This is where the quest description goes.
-      </div>
-      <ComponentButton
-        buttonType="accept"
-        text="Accept Quest"
-        onClick={curQuestId && updateQuest}
-      />
-    </div>
-  );
+  const AccordionContent = () => {
+    if (buttonType === "main ongoing") {
+      return (
+        <div className={`accordion ${difficulty}`}>
+          <button className="defaultBackground acceptBackground" onClick={onClickCancel}>
+            <p className="defaultFont">Cancel</p>
+          </button>
+          <button className="defaultBackground acceptBackground" onClick={onClickComplete}>
+            <p className="defaultFont">Complete</p>
+          </button>
+        </div>
+      );
+    } else if (buttonType === "main") {
+      return (
+        <div className={`accordion ${difficulty}`}>
+          <div className="quest-description-text">This is where the quest description goes.</div>
+          <button className="defaultBackground acceptBackground" onClick={() => {}}>
+          <p className="defaultFont">Accept Quest</p>
+          </button>
+        </div>
+      );
+    }
+    return null;
+  };
 
   const checkButtonType = buttonType === "main" ? toggleAccordion : onClick;
 
@@ -83,9 +100,9 @@ const ComponentButton = ({
         <p className="defaultFont">{defaultFontText}</p>
         {pointsText && <p className="defaultFont">{pointsText}</p>}
       </button>
-      {isAccordionVisible && buttonType === "main" && <Accordion />}
+      {isAccordionVisible && buttonType === "main" && <AccordionContent />}
     </>
   );
-};
-
+}; //I just added another Accordion using the same logic for ongoing quests - Dan
+ 
 export default ComponentButton;
