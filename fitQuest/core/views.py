@@ -6,6 +6,7 @@ from django.urls import reverse
 from core.models import Quests, User_Quest, UserProfile
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth import login, logout
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.core import serializers
 
 # Create your views here.
@@ -27,6 +28,7 @@ def quests(request):
 def select(request):
     return render(request, "index.html")
 
+@ensure_csrf_cookie
 def register(request):
     # check if user is already logged in
     if request.user.is_authenticated:
