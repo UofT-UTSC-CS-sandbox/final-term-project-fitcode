@@ -49,7 +49,7 @@ const ComponentButton = ({ buttonType, text, points, difficulty, onClickComplete
           <button className="defaultBackground acceptBackground" onClick={onClickCancel}>
             <p className="defaultFont">Cancel</p>
           </button>
-          <button className="defaultBackground defaultfont acceptBackground" onClick={onClickComplete}>
+          <button className="defaultBackground acceptBackground" onClick={onClickComplete}>
             <p className="defaultFont">Complete</p>
           </button>
         </div>
@@ -58,7 +58,9 @@ const ComponentButton = ({ buttonType, text, points, difficulty, onClickComplete
       return (
         <div className={`accordion ${difficulty}`}>
           <div className="quest-description-text">This is where the quest description goes.</div>
-          <button className="acceptBackground" onClick={() => {}}>Accept Quest</button>
+          <button className="defaultBackground acceptBackground" onClick={() => {}}>
+          <p className="defaultFont">Accept Quest</p>
+          </button>
         </div>
       );
     }

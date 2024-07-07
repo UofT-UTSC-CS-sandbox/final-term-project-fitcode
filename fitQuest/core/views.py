@@ -81,7 +81,6 @@ def displayUserQuests(request):
    return render(request, 'index.html')
 
 @login_required
-@ensure_csrf_cookie
 def completeUserQuest(request, quest_id):
     #Will change to post method later, I ran into some csrf error when trying post
     user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=quest_id)
