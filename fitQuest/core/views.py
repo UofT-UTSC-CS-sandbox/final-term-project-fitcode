@@ -89,11 +89,10 @@ def completeUserQuest(request, quest_id):
     return JsonResponse({'status': 'success', 'quest_id': quest_id})
 
 @login_required
-def cancelUserQuest(request):
-    q_id = request.GET.get('quest_id')
-    user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=q_id)
-    user_quests = User_Quest.delete(user_quest)
-    return JsonResponse(list(user_quests), safe=False)
+def cancelUserQuest(request, quest_id):
+    user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=quest_id)
+    User_Quest.delete(user_quest)
+    return JsonResponse({'status': 'success', 'quest_id': quest_id})
 
 def getCompletedQuests(request):
     user_quests = User_Quest.objects.filter(user_id=request.user, status=1).values_list("quest_id")

@@ -40,21 +40,27 @@ const OngoingQuests = () => {
         console.log(e);
     } 
   }
-
+  const cancelUserQuest = async (curQuest) => {
+    try{
+      const resp = await fetch(`/cancel_ongoing_quest/${curQuest.quest_id}`);
+      const cancelledQuest = await resp.json();
+      if(cancelledQuest.status === "success"){
+        setOngoingQuests(allOngoingQuests.filter(quest => quest.quest_id !== curQuest.quest_id));
+        showToast(`${curQuest.name} cancelled`)
+      }
+    }catch(e){
+      console.log(e);
+    }
+  }
   const handleClick = (curQuest) => () => { // wrap onCLick function so we can pass it to our buttons
     onClick(curQuest);
   };
 
-  // const deleteUserQuest = async (quest_id) => {
-  //   try{
-  //     const resp = await fetch(`/cancel_ongoing_quest/?${quest_id}`);
-  //     const newOngoingQuests = await resp.json();
-  //     setOngoingQuests(newOngoingQuests);
-  //     await fetch(`/ongoing_quests`);
-  //   }catch(e){
-  //     console.log(e);
-  //   }
-  // }
+  const handleClick2 = (curQuest) => () => { // wrap onCLick function so we can pass it to our buttons
+    cancelUserQuest(curQuest);
+  };
+
+
 
   return (
     <>
@@ -74,6 +80,7 @@ const OngoingQuests = () => {
               text={curQuest.name}
               difficulty={"easy"}
               onClickComplete={handleClick(curQuest)}
+              onClickCancel={handleClick2(curQuest)}
             />)
         })}
         
