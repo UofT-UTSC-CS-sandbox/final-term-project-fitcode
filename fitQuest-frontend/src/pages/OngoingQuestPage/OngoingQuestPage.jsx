@@ -3,10 +3,12 @@ import ComponentButton from "../../UI/ComponentButton/ComponentButton";
 
 import "../UserProfile/UserProfile.css";
 import "./OngoingQuestPage.css";
+import ToastManager from "../../Toast/ToastManager";
 
 
 const OngoingQuests = () => {
   const [allOngoingQuests, setOngoingQuests] = useState([]);
+  const { toasts, showToast } = ToastManager();
   useEffect(() => {
   const getOngoingQuests = async () => {
     try{
@@ -30,7 +32,8 @@ const OngoingQuests = () => {
         const compeltedQuest = await resp.json();
         if(compeltedQuest.status === "success"){
           console.log(allOngoingQuests.filter(quest => quest.quest_id == curQuest.quest_id));
-          setOngoingQuests(allOngoingQuests.filter(quest => quest.quest_id !== curQuest.quest_id)); //Filter Current Quest out of state so we remove from screen
+          setOngoingQuests(allOngoingQuests.filter(quest => quest.quest_id !== curQuest.quest_id)); //Filter Current Quest out of state so we remove from screen 
+          showToast(`${curQuest.name} completed`);
         }
         console.log("test");
       }catch (e){
@@ -75,6 +78,7 @@ const OngoingQuests = () => {
         })}
         
       </div>
+      {toasts}
     </>
   );
 };
