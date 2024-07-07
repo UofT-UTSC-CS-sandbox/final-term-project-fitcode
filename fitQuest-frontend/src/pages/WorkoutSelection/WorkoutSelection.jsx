@@ -8,6 +8,7 @@ import "../UserProfile/UserProfile.css";
 
 const WorkoutSelection = () => {
   const navigate = useNavigate();
+
   const getQuests = async (type) => {
     try {
       console.log(type);
@@ -74,3 +75,4 @@ const WorkoutSelection = () => {
 };
 
 export default WorkoutSelection;
+

@@ -14,16 +14,18 @@
   height: 31px;
   justify-content: start;
   padding-left: 5px;
-  }
+  color: white;
+}
 
 .login-form{
-  display: grid;
+  display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: flex-start;
 }
   
 .signup-form{
-  display:grid;
+  display: flex;
   flex-direction: column;
   width: 100%;
   justify-content: space-evenly;
