@@ -86,6 +86,7 @@ def cancelUserQuest(request, user_id, quest_id):
 
 @login_required
 def completeUserQuest(request, quest_id):
+    #Will change to post method later, I ran into some csrf error when trying post
     user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=quest_id)
     user_quest.status = 1 #set status = 1 to signify completion
     user_quest.save()
