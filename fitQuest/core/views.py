@@ -65,9 +65,8 @@ def availableQuests(request):
 
 @login_required
 def allUserQuests(request):
-   
    #user_quests = User_Quest.objects.filter(user_id=request.user.id, status=0).values('quest_id', 'status') 
-   user_quests = User_Quest.objects.filter(user_id=request.user.id).prefetch_related('quest_id')
+   user_quests = User_Quest.objects.filter(user_id=request.user.id, status=0).prefetch_related('quest_id')
    quests_data = []
    for user_quest in user_quests:
         quests_data.append({
@@ -82,11 +81,18 @@ def displayUserQuests(request):
    return render(request, 'index.html')
 
 @login_required
-def cancelUserQuest(request):
-    q_id = request.GET.get('quest_id')
-    user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=q_id)
-    user_quests = User_Quest.delete(user_quest)
-    return JsonResponse(list(user_quests), safe=False)
+def completeUserQuest(request, quest_id):
+    #Will change to post method later, I ran into some csrf error when trying post
+    user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=quest_id)
+    user_quest.status = 1 #set status = 1 to signify completion
+    user_quest.save()
+    return JsonResponse({'status': 'success', 'quest_id': quest_id})
+
+@login_required
+def cancelUserQuest(request, quest_id):
+    user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=quest_id)
+    User_Quest.delete(user_quest)
+    return JsonResponse({'status': 'success', 'quest_id': quest_id})
 
 def getCompletedQuests(request):
     user_quests = User_Quest.objects.filter(user_id=request.user, status=1).values_list("quest_id")
