@@ -22,10 +22,13 @@ const HomePage = () => {
                 </a>
             </div>
             <div className="column">
+
               <a href="/ongoing_quests" style={{textDecoration: "none", cursor: "pointer"}}>
                 <ContentComponent buttonType={"otherHome"} text={"Ongoing Quests"} />
               </a>
                 <ContentComponent buttonType={"otherHome"} text={"PvP"}/>
+                <ContentComponent buttonType={"otherHome"} text={"Ongoing Quests"}/>
+                <ContentComponent buttonType={"otherHome"} text={"Completed Quests"} onClick={()=>{window.location.href="/completed_quests"}}/>
                 <ContentComponent buttonType={"otherHome"} text={"Leaderboards"}/>
             </div>
         </div>
