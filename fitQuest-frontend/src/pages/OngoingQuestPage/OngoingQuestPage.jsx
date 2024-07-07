@@ -23,7 +23,7 @@ const OngoingQuests = () => {
     const onClick = async (curQuest) =>{
       try{
         console.log(curQuest.quest_id);
-        const resp = await fetch(`/complete_user_quest/${curQuest.quest_id}/`);
+        const resp = await fetch(`/complete_user_quest/${curQuest.quest_id}/`); // will change into post later
         if (!resp.ok) {
           throw new Error('Network response was not ok');
         }
@@ -66,11 +66,11 @@ const OngoingQuests = () => {
           return (
             <ComponentButton
               key={curQuest.quest_id}
-              buttonType="main"
+              buttonType="main ongoing"
               points={curQuest.points.toString()}
               text={curQuest.name}
               difficulty={"easy"}
-              onClick={handleClick(curQuest)}
+              onClickComplete={handleClick(curQuest)}
             />)
         })}
         
