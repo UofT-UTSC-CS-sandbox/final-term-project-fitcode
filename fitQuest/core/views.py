@@ -6,6 +6,7 @@ from django.urls import reverse
 from core.models import Quests, User_Quest
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth import login, logout
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 # Create your views here.
 
@@ -26,7 +27,7 @@ def quests(request):
 def select(request):
     return render(request, "index.html")
 
-
+@ensure_csrf_cookie
 def register(request):
     # check if user is already logged in
     if request.user.is_authenticated:
@@ -58,7 +59,7 @@ def availableQuests(request):
 
 @login_required
 def allUserQuests(request):
-   user_quests = User_Quest.objects.filter(user_id=request.user.id).values('quest_id', 'status')
+   user_quests = User_Quest.objects.filter(user_id=request.user.id, status=0).values('quest_id', 'status')
    return JsonResponse(list(user_quests), safe=False)
 
 @login_required
@@ -71,3 +72,9 @@ def cancelUserQuest(request, user_id, quest_id):
     user_quest.delete()
     return User_Quest.objects
 
+@login_required
+def completeUserQuest(request, quest_id):
+    user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=quest_id)
+    user_quest.status = 1 #set status = 1 to signify completion
+    user_quest.save()
+    return JsonResponse({'status': 'success', 'quest_id': quest_id})

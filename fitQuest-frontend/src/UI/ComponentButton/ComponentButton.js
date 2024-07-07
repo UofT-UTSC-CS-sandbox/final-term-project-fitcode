@@ -5,7 +5,7 @@ import "./ComponentButton.css";
  * For Navbar button, need to pass in text and buttonType. For main (quest button), all 4 needs to be passed in.
  * For more info, see the logic of the code to see what props need to be passed in.
  */
-const ComponentButton = ({ buttonType, text, points, difficulty }) => {
+const ComponentButton = ({ buttonType, text, points, difficulty, onClick }) => {
   let defaultFontText = "Back";
   let pointsText = "";
   let backgroundClass = "defaultBackground";
@@ -26,7 +26,7 @@ const ComponentButton = ({ buttonType, text, points, difficulty }) => {
   if (text) defaultFontText = text;
 
   return (
-    <button className={backgroundClass} onClick={() => {}}>
+    <button className={backgroundClass} onClick={ onClick}>
       <p className="defaultFont">{defaultFontText}</p>
       {pointsText && <p className="defaultFont">{pointsText}</p>}
     </button>

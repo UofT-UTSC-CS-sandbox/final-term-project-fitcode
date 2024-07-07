@@ -26,6 +26,28 @@ const OngoingQuests = () => {
   getOngoingQuests();
   },[]);
 
+    const onClick = async (curQuest) =>{
+      try{
+        console.log(curQuest.quest_id);
+        const resp = await fetch(`/complete_user_quest/${curQuest.quest_id}/`);
+        if (!resp.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const compeltedQuest = await resp.json();
+        if(compeltedQuest.status === "success"){
+          console.log(allOngoingQuests.filter(quest => quest.quest_id == curQuest.quest_id));
+          setOngoingQuests(allOngoingQuests.filter(quest => quest.quest_id !== curQuest.quest_id)); //Filter Current Quest out of state so we remove from screen
+        }
+        console.log("test");
+      }catch (e){
+        console.log(e);
+    } 
+  }
+
+  const handleClick = (curQuest) => () => { // wrap onCLick function so we can pass it to our buttons
+    onClick(curQuest);
+  };
+
   return (
     <>
       <div className="titleSection">
@@ -43,6 +65,7 @@ const OngoingQuests = () => {
               points={0}
               text={"Temp Quest"}
               difficulty={"easy"}
+              onClick={handleClick(curQuest)}
             />)
         })}
         
