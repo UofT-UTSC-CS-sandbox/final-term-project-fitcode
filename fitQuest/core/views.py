@@ -1,9 +1,9 @@
-
+import json
 from django.shortcuts import render, get_object_or_404, redirect
-from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.urls import reverse 
 from core.models import Quests, User_Quest
 from core.models import Quests
@@ -58,6 +58,7 @@ def profileData(request):
         "points": profile.points
     })
 
+@login_required
 def availableQuests(request):
     quest_type = request.GET.get('type')
     availableQuests = Quests.objects.filter(available=True, target_area=quest_type).values('quest_id', 'target_area', 'name', 'description', 'quest_points')
@@ -101,3 +102,18 @@ def getCompletedQuests(request):
         "quests": list(data)
     })
 
+@login_required
+def acceptQuest(request):
+    new_body = json.loads(request.body.decode('utf-8'))
+    testcheck = User_Quest.objects.filter(user_id=request.user, quest_id=new_body["quest_id"]).exists()
+    print(testcheck)
+    if not testcheck:
+        new_quest = User_Quest(user_id=request.user, quest_id_id=new_body["quest_id"], completion_date="", status=0)
+        new_quest.save()
+        return JsonResponse({
+            "message": "Quest accepted!"
+        })
+    else:
+        return JsonResponse({
+            "message": "This quest has already been accepted!"
+        })

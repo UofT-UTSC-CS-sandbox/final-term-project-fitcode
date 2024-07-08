@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import ComponentButton from "../../UI/ComponentButton/ComponentButton";
 
@@ -7,9 +7,9 @@ import "../UserProfile/UserProfile.css";
 import "./QuestSelect.css";
 
 const QuestSelect = (props) => {
+  const navigate = useNavigate(-1);
   const location = useLocation();
   const { availableQuests } = location.state || {};
-  console.log(availableQuests);
 
   const showDifficulty = (points) =>
     points === 100 ? "easy" : points === 200 ? "medium" : "hard";
@@ -17,7 +17,7 @@ const QuestSelect = (props) => {
   return (
     <>
       <div className="titleSection">
-        <ComponentButton />
+        <ComponentButton onClick={() => navigate(-1)} />
         <p className="mainTitle">Quests</p>
         <button className="fillerButton" />
       </div>
@@ -28,6 +28,7 @@ const QuestSelect = (props) => {
             return (
               <ComponentButton
                 key={curQuest.quest_id}
+                curQuestId={curQuest.quest_id}
                 buttonType="main"
                 points={curQuest.quest_points.toString()}
                 text={curQuest.name}
@@ -41,4 +42,3 @@ const QuestSelect = (props) => {
 };
 
 export default QuestSelect;
-

@@ -26,7 +26,7 @@ class Quests(models.Model):
 class User_Quest(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     quest_id = models.ForeignKey(Quests, on_delete=models.CASCADE)
-    completion_date = models.CharField(max_length=50, unique=True)
+    completion_date = models.CharField(max_length=50)
     status = models.IntegerField()
     
     class Meta:
