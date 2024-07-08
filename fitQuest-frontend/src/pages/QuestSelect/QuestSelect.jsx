@@ -7,7 +7,7 @@ import "../UserProfile/UserProfile.css";
 import "./QuestSelect.css";
 
 const QuestSelect = (props) => {
-  const navigate = useNavigate(-1);
+  const navigate = useNavigate();
   const location = useLocation();
   const { availableQuests } = location.state || {};
 
