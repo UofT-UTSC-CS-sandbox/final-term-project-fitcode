@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import React from "react";
 import Navbar from "../../component/Navbar/Navbar";
 import ContentComponent from "../../UI/ContentComponent/ContentComponent";
-import "./HomePage.css"
+import "./HomePage.css";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-
   const navigate = useNavigate();
 
-    const handleOngoingQuestsClick = () =>{
+  const handleOngoingQuestsClick = () => {
     getOngoingQuests();
   };
 
@@ -25,7 +24,15 @@ const HomePage = () => {
           </a>
         </div>
         <div className="column">
-          <ContentComponent buttonType={"otherHome"} text={"Ongoing Quests"} />
+          <a
+            href="/ongoing_quests"
+            style={{ textDecoration: "none", cursor: "pointer" }}
+          >
+            <ContentComponent
+              buttonType={"otherHome"}
+              text={"Ongoing Quests"}
+            />
+          </a>
           <ContentComponent
             buttonType={"otherHome"}
             text={"Completed Quests"}
