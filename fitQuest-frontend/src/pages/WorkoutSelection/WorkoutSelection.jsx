@@ -1,18 +1,35 @@
-import React from "react";
-import Navbar from "../../component/Navbar/Navbar";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import ComponentButton from "../../UI/ComponentButton/ComponentButton";
 import ContentComponent from "../../UI/ContentComponent/ContentComponent";
 import "./WorkoutSelection.css";
 import "../UserProfile/UserProfile.css";
 
-// Make sure to add the type prop to React Router so when workout is selected in WorkoutSelection,
-// it passes it to QuestSelect and not ContentComponent
-
 const WorkoutSelection = () => {
+  const navigate = useNavigate();
+
+  const getQuests = async (type) => {
+    try {
+      const resp = await fetch(`/available_quests?type=${type}`);
+      const allQuests = await resp.json();
+
+      navigate("/quests", {
+        state: { workoutType: type, availableQuests: allQuests },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSelectionClick = (workoutType) => {
+    getQuests(workoutType);
+  };
+
   return (
     <>
       <div className="titleSection">
-        <ComponentButton />
+        <ComponentButton onClick={() => navigate(-1)} />
         <p className="mainTitle">Quests</p>
         <button className="fillerButton" />
       </div>
@@ -21,32 +38,36 @@ const WorkoutSelection = () => {
         <ContentComponent
           buttonType="questType"
           text="Push Workout"
-        ></ContentComponent>
-        <a href="/quests" style={{ textDecoration: "none", cursor: "pointer" }}>
-          <ContentComponent
-            buttonType="questType"
-            type="pull"
-            text="Pull Workout"
-          ></ContentComponent>
-        </a>
+          onClick={() => handleSelectionClick("push")}
+        />
+        <ContentComponent
+          buttonType="questType"
+          text="Pull Workout"
+          onClick={() => handleSelectionClick("pull")}
+        />
         <ContentComponent
           buttonType="questType"
           text="Arms Workout"
-        ></ContentComponent>
+          onClick={() => handleSelectionClick("arms")}
+        />
         <ContentComponent
           buttonType="questType"
           text="Chest Workout"
-        ></ContentComponent>
+          onClick={() => handleSelectionClick("chest")}
+        />
         <ContentComponent
           buttonType="questType"
           text="Lower Body Workout"
-        ></ContentComponent>
+          onClick={() => handleSelectionClick("lower")}
+        />
         <ContentComponent
           buttonType="questType"
-          text="PlaceHolder Workout"
-        ></ContentComponent>
+          text="Placeholder Workout"
+          onClick={() => handleSelectionClick("Placeholder")}
+        />
       </div>
     </>
   );
 };
+
 export default WorkoutSelection;
