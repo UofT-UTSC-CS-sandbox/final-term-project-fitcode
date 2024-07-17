@@ -78,6 +78,10 @@ def allUserQuests(request):
    return JsonResponse((quests_data), safe=False)
 
 @login_required
+def displayFriendList(request):
+   return render(request, 'index.html')
+
+@login_required
 def displayUserQuests(request):
    return render(request, 'index.html')
 

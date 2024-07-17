@@ -13,6 +13,8 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 import OngoingQuests from "./pages/OngoingQuestPage/OngoingQuestPage";
+import FriendList from "./pages/FriendPage/FriendPage";
+
 
 
 import CompletedQuests from "./pages/CompletedQuests/CompletedQuests";
@@ -27,6 +29,7 @@ function App() {
         <Route path="/select" element={<WorkoutSelection/>}/>
         <Route path="/ongoing_quests" element={<OngoingQuests/>}/>
         <Route path="/completed_quests/" element={<CompletedQuests/>}/>
+        <Route path="/friend_list/" element={<FriendList/>}/>
 
       </Route>
       <Route path="/accounts/login/" element={<LoginPage/>}/>

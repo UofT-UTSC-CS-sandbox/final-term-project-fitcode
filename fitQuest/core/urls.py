@@ -19,5 +19,6 @@ urlpatterns = [
     path('ongoing_quest_list/', views.allUserQuests, name='ongoing_quest_list'),
     path('cancel_ongoing_quest/<quest_id>', views.cancelUserQuest, name='cancel_ongoing_quest'),
     path('complete_user_quest/<quest_id>/', views.completeUserQuest, name = 'complete_user_quest'),
-    path("get_completed_quests/", views.getCompletedQuests, name="get_completed_quests")
+    path("get_completed_quests/", views.getCompletedQuests, name="get_completed_quests"),
+    path("friend_list/", views.displayFriendList, name="display_friend_list")
 ]
