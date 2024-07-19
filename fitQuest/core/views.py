@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.urls import reverse 
-from core.models import Quests, User_Quest
+from core.models import Quests, User_Quest, Friends
 from core.models import Quests
 from core.models import Quests, User_Quest, UserProfile
 from django.contrib.auth.forms import UserCreationForm 
@@ -121,3 +121,23 @@ def acceptQuest(request):
         return JsonResponse({
             "message": "This quest has already been accepted!"
         })
+    
+@login_required
+def addFriend(request):
+    user_quests = User_Quest.objects.filter(user_id=request.user, status=1).values_list("quest_id")
+    data = Quests.objects.filter(quest_id__in = user_quests).values()
+    return JsonResponse({
+        "quests": list(data)
+    })
+
+@login_required
+def getFriends(request):
+    friends = Friends.objects.filter(user1_id=request.user).prefetch_related('user1_id')
+    friend_names = []
+
+    for friend in friends:
+        friend_names.append({
+            'friend_name': friend.user2_id.username,
+        })
+    return JsonResponse((friend_names), safe=False)
+
