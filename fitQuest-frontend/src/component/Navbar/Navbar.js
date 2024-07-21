@@ -12,7 +12,8 @@ const Navbar = () => {
         <a href="/" style={{ textDecoration: "none", cursor: "pointer" }}>
           <Logo />
         </a>
-        <a>
+        <a href="/friend_list"
+          style={{ textDecoration: "none", cursor: "pointer" }}>
           <ComponentButton buttonType="navbar" text="Friend List" />
         </a>
         <a

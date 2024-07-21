@@ -1,0 +1,43 @@
+.questBody {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+  
+  .contentComponent {
+    justify-content: space-between;
+  }
+  
+  .contentComponent:nth-child(2) {
+    background-color: #fb4f05;
+  }
+  
+  .contentComponent:nth-child(3) {
+    background-color: #fb0505;
+  }
+  
+  .componentFont {
+    text-align: start;
+    padding-left: 5%;
+  }
+  
+  .componentValue {
+    padding-right: 5%;
+  }
+  
+  .search {
+    width: 300px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .search:focus {
+    border-color: #007bff;
+  }
+

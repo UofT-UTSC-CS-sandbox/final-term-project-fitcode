@@ -26,14 +26,25 @@ const QuestsToBeVerified = () => {
 
   const completeQuest = async (curQuest) => {
     try {
-      const resp = await fetch(`/complete_user_quest/${curQuest.quest_id}/`); 
-      if (!resp.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const completedQuest = await resp.json();
-      if (completedQuest.status === "success") {
+      const resp = await fetch(`/complete_user_quest/`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify({
+          quest_id: curQuest.quest_id,
+          user_id: curQuest.user_id
+        })
+      }); 
+
+      if (resp.status == 200) {
         getQuestsToBeVerified();
         showToast(`${curQuest.name} verified`);
+      }
+      else if (resp.status == 401) {
+        showToast(`You cannot verify your own quests`);
       }
     } catch (e) {
       console.log(e);
@@ -49,7 +60,10 @@ const QuestsToBeVerified = () => {
           'Content-Type': 'application/json',
           'X-CSRFToken': csrftoken,
         },
-        body: JSON.stringify({quest_id: curQuest.quest_id})
+        body: JSON.stringify({
+          quest_id: curQuest.quest_id,
+          user_id: curQuest.user_id
+        })
       });
       if (resp.status == 200) {
         showToast(`${curQuest.name} cancelled`);
