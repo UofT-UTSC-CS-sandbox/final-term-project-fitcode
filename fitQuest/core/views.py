@@ -243,25 +243,6 @@ def allUserQuests(request):
 def displayUserQuests(request):
    return render(request, 'index.html')
 
-@login_required
-def completeUserQuest(request, quest_id):
-    #Will change to post method later, I ran into some csrf error when trying post
-    user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=quest_id)
-    user_quest.status = 1 #set status = 1 to signify completion
-    user_quest.save()
-
-    quest = get_object_or_404(Quests, quest_id=quest_id)
-    points = quest.quest_points
-
-    user = User.objects.filter(id=request.user.id).get()
-    profile = UserProfile.objects.get(user=user) 
-    profile_points = int(profile.points)
-    profile.points = str(profile_points + points) # profile points are in str and quest points are int
-    profile.save()
-    print(profile_points)
-    # profile.points = profile.points += quest.pointså
-
-    return JsonResponse({'status': 'success', 'quest_id': quest_id})
 
 @login_required
 def cancelUserQuest(request, quest_id):

@@ -25,8 +25,8 @@ urlpatterns = [
     path('cancel_quest_verification/', views.cancelQuestVerification, name = 'cancel_quest_verification'),
     path('cancel_quest_verification/', views.cancelQuestVerification, name = 'cancel_quest_verification'),
     path('cancel_ongoing_quest/<quest_id>', views.cancelUserQuest, name='cancel_ongoing_quest'),
-
-    path('complete_user_quest/<quest_id>/', views.completeUserQuest, name = 'complete_user_quest'),
+    
+    path('complete_user_quest/', views.completeUserQuest, name = 'complete_user_quest'),
     path("get_completed_quests/", views.getCompletedQuests, name="get_completed_quests"),
     path("friend_list/", views.displayFriendList, name="display_friend_list"),
     path("add_friend/", views.addFriend, name="add_friend"),
