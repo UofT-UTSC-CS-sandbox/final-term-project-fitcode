@@ -22,5 +22,6 @@ urlpatterns = [
     path("get_completed_quests/", views.getCompletedQuests, name="get_completed_quests"),
     path("friend_list/", views.displayFriendList, name="display_friend_list"),
     path("add_friend/", views.addFriend, name="add_friend"),
+    path("remove_friend/", views.removeFriend, name="remove_friend"),
     path("get_friend/", views.getFriends, name="get_friend")
 ]

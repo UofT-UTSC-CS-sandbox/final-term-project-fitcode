@@ -124,11 +124,39 @@ def acceptQuest(request):
     
 @login_required
 def addFriend(request):
-    user_quests = User_Quest.objects.filter(user_id=request.user, status=1).values_list("quest_id")
-    data = Quests.objects.filter(quest_id__in = user_quests).values()
-    return JsonResponse({
-        "quests": list(data)
-    })
+
+    if request.method == "POST": 
+        data = json.loads(request.body)
+        username = data.get('username') #Username of who you're trying to friend
+        checkUsername = User.objects.filter(username=username).exists()
+        if(checkUsername == False): return JsonResponse({"message": "Username Does Not Exist" })
+
+        friend = User.objects.get(username=username)
+        checkFriend = Friends.objects.filter(user1_id=request.user, user2_id = friend).exists()
+        if(checkFriend == True): return JsonResponse({"message": "Already Friends" }) #Check if already friends
+
+        addFriend = Friends.objects.create(user1_id=request.user, user2_id = friend) #Add friend after checking cases
+        return JsonResponse({"message": "Added Friend" })
+
+
+@login_required
+def removeFriend(request):
+
+    if request.method == "POST": 
+        data = json.loads(request.body)
+        username = data.get('username') #Username of who you're trying to remove
+        try:
+            # Get the user object for the friend to be removed
+            friend = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return JsonResponse({"message": "Username Does Not Exist" })
+        
+        friendRelationship = Friends.objects.filter(user1_id=request.user, user2_id = friend)
+        friendRelationship.delete()
+        return JsonResponse({"message": "Friend Deleted" })
+
+
+
 
 @login_required
 def getFriends(request):

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { json, useNavigate } from "react-router-dom";
 import ComponentButton from "../../UI/ComponentButton/ComponentButton";
 
 import "../UserProfile/UserProfile.css";
@@ -10,70 +10,88 @@ const FriendList = () => {
   const navigate = useNavigate();
   const [allFriends, setFriends] = useState([]);
   const { toasts, showToast } = ToastManager();
-  useEffect(() => {
-    const getFriends = async () => {
-      try {
-        const resp = await fetch(`/get_friend`);
-        const allFriends = await resp.json();
-        setFriends(allFriends);
-      } catch (e) {
-        console.log(e);
+
+  const inputRef = useRef(null);
+
+  const getFriends = async () => {
+    try {
+      const resp = await fetch(`/get_friend`);
+      const allFriends = await resp.json();
+      setFriends(allFriends);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const searchUsername = inputRef.current.value;
+    onSearch(searchUsername);
+  };
+
+   const onSearch = async(searchUsername) =>{
+    console.log("CSRF Token:", csrftoken);
+    console.log(searchUsername);
+    try{
+      const resp = await fetch("/add_friend/", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          "X-CSRFToken": csrftoken,
+        },
+        body: JSON.stringify({ username: searchUsername })
+      } );
+
+      const message = await resp.json();
+
+      console.log(message.message);
+      showToast(message.message); //Toast response from server
+      if(message.message == "Added Friend"){ 
+        getFriends(); //Query for all friends again, theres a better way but...
       }
-    };
+    } catch (e){
+      console.log(e)
+    }
+  }
+
+
+
+  const onDelete = async(friend_name) =>{
+    console.log("CSRF Token:", csrftoken);
+    console.log(friend_name);
+    try{
+      const resp = await fetch("/remove_friend/", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          "X-CSRFToken": csrftoken,
+        },
+        body: JSON.stringify({ username: friend_name})
+      } );
+
+      const message = await resp.json();
+
+      console.log(message.message);
+      if(message.message == "Friend Deleted"){ 
+        showToast(message.message); //Toast response from server
+        getFriends(); //Query for all friends again, theres a better way but...
+      }
+    } catch (e){
+      console.log(e)
+    }
+  }
+
+  const handleClick = (username) => () => {
+    // wrap onCLick function so we can pass it to our buttons
+    onDelete(username);
+  };
+
+  useEffect(() => {
     getFriends();
   }, []);
 
-  // const onClick = async (curQuest) => {
-  //   try {
-  //     console.log(curQuest.quest_id);
-  //     const resp = await fetch(`/complete_user_quest/${curQuest.quest_id}/`); // will change into post later
-  //     if (!resp.ok) {
-  //       throw new Error("Network response was not ok");
-  //     }
-  //     const compeltedQuest = await resp.json();
-  //     if (compeltedQuest.status === "success") {
-  //       console.log(
-  //         allOngoingQuests.filter(
-  //           (quest) => quest.quest_id == curQuest.quest_id
-  //         )
-  //       );
-  //       setOngoingQuests(
-  //         allOngoingQuests.filter(
-  //           (quest) => quest.quest_id !== curQuest.quest_id
-  //         )
-  //       ); //Filter Current Quest out of state so we remove from screen
-  //       showToast(`${curQuest.name} completed`);
-  //     }
-  //     console.log("test");
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-  // const cancelUserQuest = async (curQuest) => {
-  //   try {
-  //     const resp = await fetch(`/cancel_ongoing_quest/${curQuest.quest_id}`);
-  //     const cancelledQuest = await resp.json();
-  //     if (cancelledQuest.status === "success") {
-  //       setOngoingQuests(
-  //         allOngoingQuests.filter(
-  //           (quest) => quest.quest_id !== curQuest.quest_id
-  //         )
-  //       );
-  //       showToast(`${curQuest.name} cancelled`);
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-  // const handleClick = (curQuest) => () => {
-  //   // wrap onCLick function so we can pass it to our buttons
-  //   onClick(curQuest);
-  // };
 
-  // const handleClick2 = (curQuest) => () => {
-  //   // wrap onCLick function so we can pass it to our buttons
-  //   cancelUserQuest(curQuest);
-  // };
 
   return (
     <>
@@ -84,14 +102,26 @@ const FriendList = () => {
       </div>
 
       <div className="questBody">
+      <form onSubmit={handleSubmit}>
+        <input
+          className="search"
+          type="text"
+          placeholder="Add Friend"
+          ref={inputRef}
+
+        />
+      </form>
+    </div>
+
+      <div className="questBody">
         {allFriends.map((friend) => {
           return (
             <ComponentButton
-              key={1}
-              buttonType="main ongoing"
-              points={100}
+              key={friend.friend_name}
+              buttonType="main friend"
               text={friend.friend_name}
               difficulty={"easy"}
+              onClickComplete={handleClick(friend.friend_name)}
             />
           );
         })}

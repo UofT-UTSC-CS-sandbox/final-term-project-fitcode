@@ -40,7 +40,7 @@ const ComponentButton = ({
 
   if (buttonType) {
     if (buttonType === "navbar") backgroundClass += " navbarBackground";
-    if (buttonType === "main" || buttonType === "main ongoing") {
+    if (buttonType === "main" || buttonType === "main ongoing" || buttonType === "main friend") {
       backgroundClass += " mainBackground";
       backgroundClass +=
         difficulty === "easy"
@@ -48,7 +48,9 @@ const ComponentButton = ({
           : difficulty === "medium"
           ? " medium"
           : " hard";
-      pointsText = points + " points";
+      if(!points){
+        pointsText = ''
+      } else pointsText = points + " points";
     }
     if (buttonType === "accept") backgroundClass += " acceptBackground";
   }
@@ -59,6 +61,9 @@ const ComponentButton = ({
     if (buttonType === "main ongoing") {
       setIsAccordionVisible((curState) => !curState);
     } else if (buttonType === "main") {
+      setIsAccordionVisible((curState) => !curState);
+    }
+    else if (buttonType === "main friend") {
       setIsAccordionVisible((curState) => !curState);
     }
     console.log("Check");
@@ -100,11 +105,26 @@ const ComponentButton = ({
         </div>
       );
     }
+    else if (buttonType === "main friend") {
+      return (
+        <div className={`accordion easy`}>
+          <div className="quest-description-text">
+            Remove A Friend
+          </div>
+          <button
+            className="defaultBackground acceptBackground"
+            onClick={onClickComplete}
+          >
+            <p className="defaultFont">Remove</p>
+          </button>
+        </div>
+      );
+    }
     return null;
   };
 
   const checkButtonType =
-    buttonType === "main" || buttonType === "main ongoing"
+    buttonType === "main" || buttonType === "main ongoing" || buttonType ==="main friend"
       ? toggleAccordion
       : onClick;
 
