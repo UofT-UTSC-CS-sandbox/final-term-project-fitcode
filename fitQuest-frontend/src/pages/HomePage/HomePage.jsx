@@ -40,7 +40,13 @@ const HomePage = () => {
               window.location.href = "/completed_quests";
             }}
           />
-          <ContentComponent buttonType={"otherHome"} text={"Leaderboards"} />
+          <ContentComponent 
+            buttonType={"otherHome"} 
+            text={"Quests To Be Verified"} 
+            onClick={() => {
+              window.location.href = "/quests_to_be_verified";
+            }}
+            />
         </div>
       </div>
     </>

@@ -16,6 +16,7 @@ import OngoingQuests from "./pages/OngoingQuestPage/OngoingQuestPage";
 
 
 import CompletedQuests from "./pages/CompletedQuests/CompletedQuests";
+import QuestsToBeVerified from "./pages/QuestsToBeVerified/QuestsToBeVerified";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
         <Route path="/select" element={<WorkoutSelection/>}/>
         <Route path="/ongoing_quests" element={<OngoingQuests/>}/>
         <Route path="/completed_quests/" element={<CompletedQuests/>}/>
-
+        <Route path="/quests_to_be_verified/" element={<QuestsToBeVerified/>}/>
       </Route>
       <Route path="/accounts/login/" element={<LoginPage/>}/>
       <Route path="/accounts/register/" element={<RegisterPage/>}/>
