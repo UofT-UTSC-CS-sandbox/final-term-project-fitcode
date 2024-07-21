@@ -11,21 +11,10 @@ import WorkoutSelection from "./pages/WorkoutSelection/WorkoutSelection";
 import QuestSelect from "./pages/QuestSelect/QuestSelect";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
-
-import OngoingQuests from "./pages/OngoingQuestPage/OngoingQuestPage";
-
-
 import CompletedQuests from "./pages/CompletedQuests/CompletedQuests";
-
-import LoginPage from "./pages/LoginPage/LoginPage";
-import RegisterPage from "./pages/RegisterPage/RegisterPage";
-
 import OngoingQuests from "./pages/OngoingQuestPage/OngoingQuestPage";
 import FriendList from "./pages/FriendPage/FriendPage";
 
-
-
-import CompletedQuests from "./pages/CompletedQuests/CompletedQuests";
 
 function App() {
   return (
