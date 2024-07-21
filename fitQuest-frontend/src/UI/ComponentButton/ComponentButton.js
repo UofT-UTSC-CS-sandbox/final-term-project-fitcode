@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ComponentButton.css";
+import ToastManager from "../../Toast/ToastManager";
 /* Each props used must be string and lowercased.
  * Default button is Back button; its text and style is already set, so no need to pass props for Back button.
  * For Navbar button, need to pass in text and buttonType. For main (quest button), all 4 needs to be passed in.
@@ -20,6 +21,7 @@ const ComponentButton = ({
   let backgroundClass = "defaultBackground";
   // Initialize state at the top level
   const [isAccordionVisible, setIsAccordionVisible] = useState(false);
+  const { toasts, showToast } = ToastManager();
 
   // PLZ UPDATE THIS DEBT BELOW!!! NEED TO FETCH THE QUEST_ID IN THE FUTURE AND DO THIS SOMEWHERE ELSE!!!
   const updateQuest = async () => {
@@ -32,6 +34,7 @@ const ComponentButton = ({
         },
       });
       const updatedResp = await resp.json();
+      showToast(`${updatedResp.message}`);
       console.log(updatedResp.message);
     } catch (err) {
       console.log(err);
@@ -137,6 +140,7 @@ const ComponentButton = ({
         {pointsText && <p className="defaultFont">{pointsText}</p>}
       </button>
       {isAccordionVisible && <AccordionContent />}
+      {toasts}
     </>
   );
 }; //I just added another Accordion using the same logic for ongoing quests - Dan
