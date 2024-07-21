@@ -1,0 +1,100 @@
+.defaultBackground {
+  width: 155px;
+  height: 63px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fbbc05;
+  border-radius: 30px;
+  border: none;
+}
+
+.defaultFont {
+  font-weight: 250px;
+  font-size: 40px;
+  font-family: Keania One;
+  color: #fff;
+}
+
+.navbarBackground {
+  width: 270px;
+  background-color: #fb4f05;
+}
+
+.mainBackground {
+  width: 1146px;
+  height: 80px;
+  justify-content: space-around;
+  margin: 20px 0;
+  padding-bottom:21px
+}
+
+.easy {
+  background-color: #fbbc05;
+}
+
+.medium {
+  background-color: #fb4f05;
+}
+
+.hard {
+  background-color: #fb0505;
+}
+
+.accordion {
+  width: 1146px;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 0; /* Make top left corner sharp */
+  border-top-right-radius: 0; /* Make top right corner sharp */
+  border-bottom-left-radius: 30px; /* Make bottom left corner rounded */
+  border-bottom-right-radius: 30px; /* Make bottom right corner rounded */
+  margin-top: -46px;
+  justify-content: space-around;
+  padding: 35px 0;
+}
+
+.quest-description-text {
+  font-size: 25px;
+  font-family: Keania One;
+  color: #fff;
+  margin-left: 10px;
+  width: 50%;
+}
+
+.acceptBackground {
+  border-radius: 30px;
+  border-color: black;
+  border-style: solid;
+  width: 270px;
+  background-color: #fb4f05;
+}
+
+.accordion {
+  width: 1146px;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 0; /* Make top left corner sharp */
+  border-top-right-radius: 0; /* Make top right corner sharp */
+  border-bottom-left-radius: 30px; /* Make bottom left corner rounded */
+  border-bottom-right-radius: 30px; /* Make bottom right corner rounded */
+  margin-top: -46px;
+  justify-content: space-around;
+  padding: 35px 0;
+}
+
+.quest-description-text {
+  font-size: 25px;
+  font-family: Keania One;
+  color: #fff;
+  margin-left: 10px;
+  width: 50%;
+}
+
+.acceptBackground {
+  border-radius: 30px;
+  border-color: black;
+  border-style: solid;
+  width: 270px;
+  background-color: #fb4f05;
+}
