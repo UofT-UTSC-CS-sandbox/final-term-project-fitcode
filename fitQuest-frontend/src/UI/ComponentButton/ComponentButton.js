@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ComponentButton.css";
+import ToastManager from "../../Toast/ToastManager";
 /* Each props used must be string and lowercased.
  * Default button is Back button; its text and style is already set, so no need to pass props for Back button.
  * For Navbar button, need to pass in text and buttonType. For main (quest button), all 4 needs to be passed in.
@@ -20,6 +21,7 @@ const ComponentButton = ({
   let backgroundClass = "defaultBackground";
   // Initialize state at the top level
   const [isAccordionVisible, setIsAccordionVisible] = useState(false);
+  const { toasts, showToast } = ToastManager();
 
   // PLZ UPDATE THIS DEBT BELOW!!! NEED TO FETCH THE QUEST_ID IN THE FUTURE AND DO THIS SOMEWHERE ELSE!!!
   const updateQuest = async () => {
@@ -32,6 +34,7 @@ const ComponentButton = ({
         },
       });
       const updatedResp = await resp.json();
+      showToast(`${updatedResp.message}`);
       console.log(updatedResp.message);
     } catch (err) {
       console.log(err);
@@ -40,7 +43,11 @@ const ComponentButton = ({
 
   if (buttonType) {
     if (buttonType === "navbar") backgroundClass += " navbarBackground";
-    if (buttonType === "main" || buttonType === "main ongoing" || buttonType === "main friend") {
+    if (
+      buttonType === "main" ||
+      buttonType === "main ongoing" ||
+      buttonType === "main friend"
+    ) {
       backgroundClass += " mainBackground";
       backgroundClass +=
         difficulty === "easy"
@@ -48,8 +55,8 @@ const ComponentButton = ({
           : difficulty === "medium"
           ? " medium"
           : " hard";
-      if(!points){
-        pointsText = ''
+      if (!points) {
+        pointsText = "";
       } else pointsText = points + " points";
     }
     if (buttonType === "accept") backgroundClass += " acceptBackground";
@@ -62,8 +69,7 @@ const ComponentButton = ({
       setIsAccordionVisible((curState) => !curState);
     } else if (buttonType === "main") {
       setIsAccordionVisible((curState) => !curState);
-    }
-    else if (buttonType === "main friend") {
+    } else if (buttonType === "main friend") {
       setIsAccordionVisible((curState) => !curState);
     }
     console.log("Check");
@@ -104,13 +110,10 @@ const ComponentButton = ({
           </button>
         </div>
       );
-    }
-    else if (buttonType === "main friend") {
+    } else if (buttonType === "main friend") {
       return (
         <div className={`accordion easy`}>
-          <div className="quest-description-text">
-            Remove A Friend
-          </div>
+          <div className="quest-description-text">Remove A Friend</div>
           <button
             className="defaultBackground acceptBackground"
             onClick={onClickComplete}
@@ -124,7 +127,9 @@ const ComponentButton = ({
   };
 
   const checkButtonType =
-    buttonType === "main" || buttonType === "main ongoing" || buttonType ==="main friend"
+    buttonType === "main" ||
+    buttonType === "main ongoing" ||
+    buttonType === "main friend"
       ? toggleAccordion
       : onClick;
 
@@ -135,6 +140,7 @@ const ComponentButton = ({
         {pointsText && <p className="defaultFont">{pointsText}</p>}
       </button>
       {isAccordionVisible && <AccordionContent />}
+      {toasts}
     </>
   );
 }; //I just added another Accordion using the same logic for ongoing quests - Dan
