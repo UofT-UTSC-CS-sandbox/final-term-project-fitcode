@@ -117,7 +117,14 @@ def acceptQuest(request):
     else:
         return JsonResponse({
             "message": "This quest has already been accepted!"
-        })
+        })    
+
+@login_required
+def sendQuestToVerify(request, quest_id):
+    user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=quest_id)
+    user_quest.status = 2
+    user_quest.save()
+    return JsonResponse({'status': 'success', 'quest_id': quest_id})
 
 @login_required
 def getQuestsToBeVerified(request):
