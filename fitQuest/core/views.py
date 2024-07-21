@@ -174,7 +174,8 @@ def cancelQuestVerification(request):
         return JsonResponse({'message': 'Bad request'}, status=400)
     body = json.loads(request.body.decode('utf-8'))
     quest_id = body["quest_id"]
-    user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=quest_id)
+    user_id = body["user_id"]
+    user_quest = get_object_or_404(User_Quest, user_id=user_id, quest_id=quest_id)
     User_Quest.delete(user_quest)
     return JsonResponse({'status': 'success', 'quest_id': quest_id})
 

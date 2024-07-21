@@ -60,7 +60,10 @@ const QuestsToBeVerified = () => {
           'Content-Type': 'application/json',
           'X-CSRFToken': csrftoken,
         },
-        body: JSON.stringify({quest_id: curQuest.quest_id})
+        body: JSON.stringify({
+          quest_id: curQuest.quest_id,
+          user_id: curQuest.user_id
+        })
       });
       if (resp.status == 200) {
         showToast(`${curQuest.name} cancelled`);
