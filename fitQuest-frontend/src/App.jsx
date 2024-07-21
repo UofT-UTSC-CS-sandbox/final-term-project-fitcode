@@ -13,6 +13,14 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 import OngoingQuests from "./pages/OngoingQuestPage/OngoingQuestPage";
+
+
+import CompletedQuests from "./pages/CompletedQuests/CompletedQuests";
+
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+
+import OngoingQuests from "./pages/OngoingQuestPage/OngoingQuestPage";
 import FriendList from "./pages/FriendPage/FriendPage";
 
 
