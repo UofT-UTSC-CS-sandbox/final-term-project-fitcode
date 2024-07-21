@@ -95,6 +95,7 @@ def cancelUserQuest(request, quest_id):
     User_Quest.delete(user_quest)
     return JsonResponse({'status': 'success', 'quest_id': quest_id})
 
+@login_required
 def getCompletedQuests(request):
     user_quests = User_Quest.objects.filter(user_id=request.user, status=1).values_list("quest_id")
     data = Quests.objects.filter(quest_id__in = user_quests).values()
@@ -116,10 +117,40 @@ def acceptQuest(request):
     else:
         return JsonResponse({
             "message": "This quest has already been accepted!"
-        })
-    
+        })    
+
 def sendQuestToVerify(request, quest_id):
     user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=quest_id)
     user_quest.status = 2
     user_quest.save()
     return JsonResponse({'status': 'success', 'quest_id': quest_id})
+
+@login_required
+def getQuestsToBeVerified(request):
+    user_quests = User_Quest.objects.filter(status=2)
+    
+    data=[]
+    for user_quest in user_quests:
+        quest = user_quest.quest_id 
+        data.append({
+            "username": user_quest.user_id.username,
+            "quest_id": quest.quest_id,
+            "name": quest.name,
+            "points": quest.quest_points,
+        })
+    return JsonResponse({
+        "quests": list(data)
+    })
+
+@login_required
+def cancelQuestVerification(request):
+    if not request.user.is_superuser:
+        return JsonResponse({'message': 'You need to be admin to perform this action'}, status=401)
+    if not request.method == "POST": 
+        return JsonResponse({'message': 'Bad request'}, status=400)
+    body = json.loads(request.body.decode('utf-8'))
+    quest_id = body["quest_id"]
+    user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=quest_id)
+    User_Quest.delete(user_quest)
+    return JsonResponse({'status': 'success', 'quest_id': quest_id})
+

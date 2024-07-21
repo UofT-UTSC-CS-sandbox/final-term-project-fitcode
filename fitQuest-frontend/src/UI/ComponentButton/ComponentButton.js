@@ -61,7 +61,6 @@ const ComponentButton = ({
     } else if (buttonType === "main") {
       setIsAccordionVisible((curState) => !curState);
     }
-    console.log("Check");
   };
 
   // let accordionClassName = "accordion " + difficulty;

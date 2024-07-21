@@ -9,43 +9,65 @@ const QuestsToBeVerified = () => {
   const navigate = useNavigate();
   const [allQuestsToBeVerified, setQuestsToBeVerified] = useState([]);
   const { toasts, showToast } = ToastManager();
+
+  const getQuestsToBeVerified = async () => {
+    try {
+      const resp = await fetch(`/get_quests_to_be_verified`);
+      const data = await resp.json();
+      setQuestsToBeVerified(data.quests);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
-    const getQuestsToBeVerified = async () => {
-      // try {
-      //   const resp = await fetch(`/ongoing_quest_list`);
-      //   const questsToBeVerified = await resp.json();
-      //   setQuestsToBeVerified(allQuestsToBeVerified);
-      // } catch (e) {
-      //   console.log(e);
-      // }
-    };
     getQuestsToBeVerified();
   }, []);
 
-  // const onClick = async (curQuest) => {
-  //   try {
-  //     // const resp = await fetch(`/complete_user_quest/${curQuest.quest_id}/`); // will change into post later
-  //     // if (!resp.ok) {
-  //     //   throw new Error("Network response was not ok");
-  //     // }
-  //     const compeltedQuest = await resp.json();
-  //     if (compeltedQuest.status === "success") {
-  //       setOngoingQuests(
-  //         allQuestsToBeVerified.filter(
-  //           (quest) => quest.quest_id !== curQuest.quest_id
-  //         )
-  //       ); //Filter Current Quest out of state so we remove from screen
-  //       showToast(`${curQuest.name} verified`);
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
-  const handleClick = (curQuest) => () => {
-    // wrap onCLick function so we can pass it to our buttons
-    onClick(curQuest);
+  const completeQuest = async (curQuest) => {
+    try {
+      const resp = await fetch(`/complete_user_quest/${curQuest.quest_id}/`); 
+      if (!resp.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const completedQuest = await resp.json();
+      if (completedQuest.status === "success") {
+        getQuestsToBeVerified();
+        showToast(`${curQuest.name} verified`);
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
+
+  const cancelQuest = async (curQuest) => {
+    try {
+      const resp = await fetch(`/cancel_quest_verification/`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify({quest_id: curQuest.quest_id})
+      });
+      if (resp.status == 200) {
+        showToast(`${curQuest.name} cancelled`);
+        getQuestsToBeVerified();
+      }
+      else if (resp.status == 401) {
+        showToast(`You need to be admin to perform this action`);
+      }
+      else {
+        showToast(`Invalid quest id`);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  const showDifficulty = (points) =>
+    points === 100 ? "easy" : points === 200 ? "medium" : "hard";
 
   return (
     <>
@@ -60,12 +82,12 @@ const QuestsToBeVerified = () => {
           return (
             <ComponentButton
               key={curQuest.quest_id}
-              buttonType="to be verified"
+              buttonType="main ongoing"
               points={curQuest.points.toString()}
-              text={curQuest.name}
-              difficulty={curQuest.difficulty}
-              username={curQuest.username}
-              onClickVerify={handleClick(curQuest)}
+              text={curQuest.name + " - " + curQuest.username}
+              difficulty={showDifficulty(curQuest.points)}
+              onClickComplete={()=>completeQuest(curQuest)}
+              onClickCancel={()=>cancelQuest(curQuest)}
             />
           );
         })}
