@@ -107,17 +107,26 @@ def getCompletedQuests(request):
 def acceptQuest(request):
     new_body = json.loads(request.body.decode('utf-8'))
     testcheck = User_Quest.objects.filter(user_id=request.user, quest_id=new_body["quest_id"]).exists()
-    print(testcheck)
-    if not testcheck:
-        new_quest = User_Quest(user_id=request.user, quest_id_id=new_body["quest_id"], completion_date="", status=0)
-        new_quest.save()
-        return JsonResponse({
-            "message": "Quest accepted!"
-        })
-    else:
+    if testcheck:
         return JsonResponse({
             "message": "This quest has already been accepted!"
-        })    
+        })
+    ongoingQuests = User_Quest.objects.filter(user_id=request.user, status=0).values()
+    if ongoingQuests.count() >= 3:
+        return JsonResponse({
+            "message": "You cannot accept anymore quests!"
+        })
+    questCount = User_Quest.objects.filter(quest_id=new_body["quest_id"]).values()
+    # For now, each quests' size_limit is 10 people max
+    if questCount.count() >= 10:
+        return JsonResponse({
+            "message": "This quest cannot accept anymore users!"
+        })
+    new_quest = User_Quest(user_id=request.user, quest_id_id=new_body["quest_id"], completion_date="", status=0)
+    new_quest.save()
+    return JsonResponse({
+        "message": "Quest accepted!"
+    }) 
 
 @login_required
 def sendQuestToVerify(request, quest_id):
