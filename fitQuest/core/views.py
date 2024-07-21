@@ -32,6 +32,10 @@ def quests(request):
 def select(request):
     return render(request, "index.html")
 
+@login_required
+def questVerification(request, id):
+    return render(request, "index.html")
+
 @ensure_csrf_cookie
 def register(request):
     # check if user is already logged in
@@ -82,9 +86,16 @@ def displayUserQuests(request):
    return render(request, 'index.html')
 
 @login_required
-def completeUserQuest(request, quest_id):
-    #Will change to post method later, I ran into some csrf error when trying post
-    user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=quest_id)
+def completeUserQuest(request):
+    if not request.method == "POST": 
+        return JsonResponse({'message': 'Bad request'}, status=400)
+    body = json.loads(request.body.decode('utf-8'))
+    
+    quest_id = body["quest_id"]
+    user_id = body["user_id"]
+    user_quest = get_object_or_404(User_Quest, user_id=user_id, quest_id=quest_id)
+    if user_id == request.user.id and not request.user.is_superuser:
+        return JsonResponse({'message': 'You cannot verify your own requests unless you are admin'}, status=401)
     user_quest.status = 1 #set status = 1 to signify completion
     user_quest.save()
     return JsonResponse({'status': 'success', 'quest_id': quest_id})
@@ -127,6 +138,17 @@ def sendQuestToVerify(request, quest_id):
     return JsonResponse({'status': 'success', 'quest_id': quest_id})
 
 @login_required
+def getQuestInfo(request):
+    quest_id = request.GET.get('quest_id')
+    user_quest = get_object_or_404(User_Quest, user_id=request.user.id, quest_id=quest_id)
+    quest = user_quest.quest_id
+    return JsonResponse({
+        'quest_id': quest_id,
+        'name': quest.name,
+        'points': quest.quest_points
+        })
+
+@login_required
 def getQuestsToBeVerified(request):
     user_quests = User_Quest.objects.filter(status=2)
     
@@ -135,6 +157,7 @@ def getQuestsToBeVerified(request):
         quest = user_quest.quest_id 
         data.append({
             "username": user_quest.user_id.username,
+            "user_id": user_quest.user_id.id,
             "quest_id": quest.quest_id,
             "name": quest.name,
             "points": quest.quest_points,
