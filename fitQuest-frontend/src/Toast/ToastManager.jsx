@@ -18,7 +18,7 @@ const ToastManager = () => {
 
   return {
     toasts: (
-      <div className="ToastContainer">
+      <>
         {toasts.map(({ id, message, duration }) => (
           <Toast
             key={id}
@@ -27,7 +27,7 @@ const ToastManager = () => {
             onDismiss={() => dismissToast(id)}
           />
         ))}
-      </div>
+      </>
     ),
     showToast
   };

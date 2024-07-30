@@ -140,7 +140,7 @@ const ComponentButton = ({
         {pointsText && <p className="defaultFont">{pointsText}</p>}
       </button>
       {isAccordionVisible && <AccordionContent />}
-      {toasts}
+      {true && toasts}
     </>
   );
 }; //I just added another Accordion using the same logic for ongoing quests - Dan
