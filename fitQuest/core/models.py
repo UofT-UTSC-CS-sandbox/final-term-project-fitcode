@@ -32,4 +32,9 @@ class User_Quest(models.Model):
     class Meta:
         unique_together = (('user_id', 'quest_id'),)
 
+class Friends(models.Model):
+    user1_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='friends_from_user1')
+    user2_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='friends_from_user2')    
+    class Meta:
+        unique_together = (('user1_id', 'user2_id'),)
 

@@ -23,32 +23,6 @@ const OngoingQuests = () => {
     getOngoingQuests();
   }, []);
 
-  const onClick = async (curQuest) => {
-    try {
-      console.log(curQuest.quest_id);
-      const resp = await fetch(`/complete_user_quest/${curQuest.quest_id}/`); // will change into post later
-      if (!resp.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const compeltedQuest = await resp.json();
-      if (compeltedQuest.status === "success") {
-        console.log(
-          allOngoingQuests.filter(
-            (quest) => quest.quest_id == curQuest.quest_id
-          )
-        );
-        setOngoingQuests(
-          allOngoingQuests.filter(
-            (quest) => quest.quest_id !== curQuest.quest_id
-          )
-        ); //Filter Current Quest out of state so we remove from screen
-        showToast(`${curQuest.name} completed`);
-      }
-      console.log("test");
-    } catch (e) {
-      console.log(e);
-    }
-  };
   const cancelUserQuest = async (curQuest) => {
     try {
       const resp = await fetch(`/cancel_ongoing_quest/${curQuest.quest_id}`);
@@ -66,8 +40,7 @@ const OngoingQuests = () => {
     }
   };
   const handleClick = (curQuest) => () => {
-    // wrap onCLick function so we can pass it to our buttons
-    onClick(curQuest);
+    window.location.href = "/quest_verification/" + curQuest.quest_id
   };
 
   const handleClick2 = (curQuest) => () => {
