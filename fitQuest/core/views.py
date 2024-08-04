@@ -1,27 +1,14 @@
 import json
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, JsonResponse
-import json
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import ensure_csrf_cookie
-from django.urls import reverse 
-from core.models import Quests, User_Quest, Friends
-from core.models import Quests
-from core.models import Quests, User_Quest, UserProfile
-from django.contrib.auth.forms import UserCreationForm 
+from django.urls import reverse
+from core.models import Quests, User_Quest, Friends, UserProfile
 from django.contrib.auth import login, logout
-from django.views.decorators.csrf import ensure_csrf_cookie
 from django.core import serializers
-from core.models import Quests, User_Quest, UserProfile
-from django.contrib.auth.forms import UserCreationForm 
-from django.contrib.auth import login, logout
-from django.views.decorators.csrf import ensure_csrf_cookie
-from django.core import serializers
-
-# Create your views here.
+from django.contrib.auth.forms import UserCreationForm
 
 # for testing
 @login_required
@@ -61,7 +48,6 @@ def register(request):
         form = UserCreationForm()
     return render(request, "registration/register.html", {"form": form})
 
-
 @login_required
 def profileData(request):
     user = User.objects.filter(id=request.user.id).get()
@@ -79,24 +65,7 @@ def availableQuests(request):
     return JsonResponse(list(availableQuests), safe=False)
 
 @login_required
-def allUserQuests(request):
-   #user_quests = User_Quest.objects.filter(user_id=request.user.id, status=0).values('quest_id', 'status') 
-   user_quests = User_Quest.objects.filter(user_id=request.user.id, status=0).prefetch_related('quest_id')
-   quests_data = []
-   for user_quest in user_quests:
-        quests_data.append({
-            'quest_id': user_quest.quest_id.quest_id,
-            'name': user_quest.quest_id.name,
-            'points': user_quest.quest_id.quest_points
-        })
-   return JsonResponse((quests_data), safe=False)
-
-@login_required
 def displayFriendList(request):
-   return render(request, 'index.html')
-
-@login_required
-def displayUserQuests(request):
    return render(request, 'index.html')
 
 @login_required
@@ -138,8 +107,7 @@ def getCompletedQuests(request):
     return JsonResponse({
         "quests": list(data)
     })
-
-
+    
 @login_required
 def addFriend(request):
 
@@ -189,6 +157,22 @@ def getFriends(request):
 
 
 
+@login_required
+def allUserQuests(request):
+   #user_quests = User_Quest.objects.filter(user_id=request.user.id, status=0).values('quest_id', 'status') 
+   user_quests = User_Quest.objects.filter(user_id=request.user.id, status=0).prefetch_related('quest_id')
+   quests_data = []
+   for user_quest in user_quests:
+        quests_data.append({
+            'quest_id': user_quest.quest_id.quest_id,
+            'name': user_quest.quest_id.name,
+            'points': user_quest.quest_id.quest_points
+        })
+   return JsonResponse((quests_data), safe=False)
+
+@login_required
+def displayUserQuests(request):
+   return render(request, 'index.html')
 
 @login_required
 def acceptQuest(request):
