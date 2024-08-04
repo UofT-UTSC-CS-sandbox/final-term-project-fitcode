@@ -42,6 +42,14 @@
     background-color: #ffdb6e;
 }
 
+.contentComponent.otherHome:hover{
+    background-color: #ffdb6e;
+}
+
+.contentComponent.questType:hover{
+    background-color: #ffdb6e;
+}
+
 .componentValue{
     font-weight: 250px;
     font-size: 40px;

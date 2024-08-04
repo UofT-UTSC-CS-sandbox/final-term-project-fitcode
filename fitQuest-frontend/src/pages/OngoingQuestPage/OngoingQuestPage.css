@@ -11,11 +11,11 @@
   }
   
   .contentComponent:nth-child(2) {
-    background-color: #fb4f05;
+    background-color: #ffdb6e;
   }
   
   .contentComponent:nth-child(3) {
-    background-color: #fb0505;
+    background-color: #ffdb6e;
   }
   
   .componentFont {

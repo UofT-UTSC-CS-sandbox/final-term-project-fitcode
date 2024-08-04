@@ -9,6 +9,18 @@
   border: none;
 }
 
+.defaultBackground.navbarBackground:hover {
+  background-color: #ffdb6e;
+}
+
+.defaultBackground.acceptBackground:hover {
+  background-color: #ffdb6e;
+}
+
+.centered {
+  text-align: center;
+}
+
 .defaultFont {
   font-weight: 250px;
   font-size: 40px;
