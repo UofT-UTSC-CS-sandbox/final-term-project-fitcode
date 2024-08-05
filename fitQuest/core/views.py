@@ -51,7 +51,6 @@ def register(request):
 @login_required
 def profileData(request):
     user = User.objects.filter(id=request.user.id).get()
-    user = User.objects.filter(id=request.user.id).get()
     profile = user.userprofile
     return JsonResponse({
         "username": user.username,
@@ -123,6 +122,8 @@ def addFriend(request):
 
         addFriend = Friends.objects.create(user1_id=request.user, user2_id = friend) #Add friend after checking cases
         return JsonResponse({"message": "Added Friend" })
+    else:
+        return JsonResponse({ "message": "Something went wrong! "})
 
 
 @login_required
@@ -147,13 +148,16 @@ def removeFriend(request):
 @login_required
 def getFriends(request):
     friends = Friends.objects.filter(user1_id=request.user).prefetch_related('user1_id')
-    friend_names = []
+    friend_list = [{'friend_name': request.user.username, 'points': UserProfile.objects.get(user_id=request.user).points, "curuser": True}]
 
     for friend in friends:
-        friend_names.append({
+        points = UserProfile.objects.get(user_id=friend.user2_id).points
+        friend_list.append({
             'friend_name': friend.user2_id.username,
+            'points': points,
+            "curuser": False
         })
-    return JsonResponse((friend_names), safe=False)
+    return JsonResponse((friend_list), safe=False)
 
 
 
