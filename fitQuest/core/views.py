@@ -86,7 +86,7 @@ def completeUserQuest(request):
     points = quest.quest_points
 
     user = User.objects.filter(id=request.user.id).get()
-    profile = UserProfile.objects.get(user=user) 
+    profile = UserProfile.objects.get(user_id=user_id)
     profile_points = int(profile.points)
     profile.points = str(profile_points + points) # profile points are in str and quest points are int
     profile.save()

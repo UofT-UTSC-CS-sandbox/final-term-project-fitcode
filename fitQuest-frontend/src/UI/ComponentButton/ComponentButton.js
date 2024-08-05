@@ -46,7 +46,8 @@ const ComponentButton = ({
     if (
       buttonType === "main" ||
       buttonType === "main ongoing" ||
-      buttonType === "main friend"
+      buttonType === "main friend" ||
+      buttonType === "main completed"
     ) {
       backgroundClass += " mainBackground";
       backgroundClass +=
@@ -65,7 +66,7 @@ const ComponentButton = ({
 
   // Define toggleAccordion to conditionally toggle based on buttonType
   const toggleAccordion = () => {
-    if (buttonType === "main ongoing") {
+    if (buttonType === "main ongoing" || buttonType === "main completed") {
       setIsAccordionVisible((curState) => !curState);
     } else if (buttonType === "main") {
       setIsAccordionVisible((curState) => !curState);
@@ -122,6 +123,14 @@ const ComponentButton = ({
           </button>
         </div>
       );
+    } else if (buttonType === "main completed") {
+      return (
+        <div className={`accordion ${difficulty} centered`}>
+          <div className="quest-description-text">
+            This is where the quest description goes.
+          </div>
+        </div>
+      );
     }
     return null;
   };
@@ -129,7 +138,8 @@ const ComponentButton = ({
   const checkButtonType =
     buttonType === "main" ||
     buttonType === "main ongoing" ||
-    buttonType === "main friend"
+    buttonType === "main friend" ||
+    buttonType === "main completed"
       ? toggleAccordion
       : onClick;
 
@@ -140,7 +150,7 @@ const ComponentButton = ({
         {pointsText && <p className="defaultFont">{pointsText}</p>}
       </button>
       {isAccordionVisible && <AccordionContent />}
-      {toasts}
+      {true && toasts}
     </>
   );
 }; //I just added another Accordion using the same logic for ongoing quests - Dan
