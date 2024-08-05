@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ComponentButton from "../../UI/ComponentButton/ComponentButton";
+import { useNavigate } from "react-router-dom";
 
 import "../UserProfile/UserProfile.css";
 import "./CompletedQuests.css";
@@ -7,7 +8,7 @@ import "./CompletedQuests.css";
 
 const CompletedQuests = () => {
   const [completedQuests, setCompletedQuests] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const getQuests = async () => {
       try {
@@ -29,7 +30,7 @@ const CompletedQuests = () => {
   return (
     <>
       <div className="titleSection">
-        <ComponentButton />
+        <ComponentButton onClick={() => navigate(-1)}/>
         <p className="mainTitle">Completed Quests</p>
         <button className="fillerButton" />
       </div>
@@ -40,7 +41,7 @@ const CompletedQuests = () => {
           return (
             <ComponentButton
               key={userQuest.quest_id}
-              buttonType="main"
+              buttonType="main completed"
               points={userQuest.quest_points.toString()}
               text={userQuest.name}
               difficulty={showDifficulty(userQuest.quest_points)}
