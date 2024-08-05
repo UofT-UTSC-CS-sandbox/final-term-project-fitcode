@@ -18,6 +18,7 @@ const FriendList = () => {
       const resp = await fetch(`/get_friend`);
       const allFriends = await resp.json();
       setFriends(allFriends);
+      console.log(allFriends);
     } catch (e) {
       console.log(e);
     }
@@ -121,6 +122,7 @@ const FriendList = () => {
               buttonType="main friend"
               text={friend.friend_name}
               difficulty={"easy"}
+              points = {friend.friend_points}
               onClickComplete={handleClick(friend.friend_name)}
             />
           );

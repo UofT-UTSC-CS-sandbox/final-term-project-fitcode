@@ -51,7 +51,6 @@ def register(request):
 @login_required
 def profileData(request):
     user = User.objects.filter(id=request.user.id).get()
-    user = User.objects.filter(id=request.user.id).get()
     profile = user.userprofile
     return JsonResponse({
         "username": user.username,
@@ -119,9 +118,11 @@ def addFriend(request):
 
         friend = User.objects.get(username=username)
         checkFriend = Friends.objects.filter(user1_id=request.user, user2_id = friend).exists()
-        if(checkFriend == True): return JsonResponse({"message": "Already Friends" }) #Check if already friends
+        checkFriend2 = Friends.objects.filter(user1_id=friend, user2_id =request.user).exists()
+        if(checkFriend == True or checkFriend2 == True): return JsonResponse({"message": "Already Friends" }) #Check if already friends
 
         addFriend = Friends.objects.create(user1_id=request.user, user2_id = friend) #Add friend after checking cases
+        addFriendBoth = Friends.objects.create(user1_id=friend, user2_id = request.user)
         return JsonResponse({"message": "Added Friend" })
 
 
@@ -150,8 +151,16 @@ def getFriends(request):
     friend_names = []
 
     for friend in friends:
+        # user = User.objects.filter(id=friend.user2_id).get()
+        try:
+            profile = get_object_or_404(UserProfile, user = friend.user2_id)
+        except:
+            print("error with profile, user probably made account before profile")
+        points = "0"
+        if(profile!= None): points = profile.points
         friend_names.append({
             'friend_name': friend.user2_id.username,
+            'friend_points': points,
         })
     return JsonResponse((friend_names), safe=False)
 
