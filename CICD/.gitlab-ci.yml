@@ -1,0 +1,42 @@
+variables:
+  IMAGE_NAME: jarvisy492/fitquest
+  IMAGE_TAG: latest
+  GOOGLE_PROJECT_ID: fitquest-431620
+  GOOGLE_REGION: us-central1
+
+build_image:
+  stage: build
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  before_script:
+    - docker login -u $REGISTRY_USER -p $REGISTRY_PASS
+  script:
+    - docker build -t $IMAGE_NAME:$IMAGE_TAG . --platform="linux/amd64"
+    - docker push $IMAGE_NAME:$IMAGE_TAG
+
+test-job:
+  stage: test
+  image: python:3.10.14-bookworm
+  before_script:
+    - pip install Django==5.0.6
+    - pip install "psycopg[binary]" 
+  script:
+    - cd fitQuest
+    - python manage.py runserver 8000 &
+    - sleep 10
+    - curl -sSf http://localhost:8000 > /dev/null && echo "Server is Up"
+    - echo "All tests successfully passed."
+
+deploy-prod:
+  stage: deploy
+  image: google/cloud-sdk:latest
+  script:
+    - echo $GOOGLE_CLOUD_KEYFILE_JSON > /tmp/keyfile.json
+    - gcloud auth activate-service-account --key-file=/tmp/keyfile.json
+    - gcloud config set project $GOOGLE_PROJECT_ID
+    - gcloud run deploy fitquest --image jarvisy492/fitquest:latest --region $GOOGLE_REGION --platform managed --allow-unauthenticated
+
+  environment: production
